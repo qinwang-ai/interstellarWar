@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cancel">取消</string>
+	<string name="sinaweibo">新浪微博</string>
+	<string name="qqweibo">腾讯微博</string>
+	<string name="qqdenglu">QQ空间</string>
+	<string name="kaixin">开心网</string>
+	<string name="weixin_session">微信</string>
+	<string name="weixin_timeline">朋友圈</string>
+	<string name="weixin_session_fullname">微信好友</string>
+	<string name="weixin_timeline_fullname">微信朋友圈</string>
+	<string name="email">邮件</string>
+    <string name="sms">短信</string>
+	<string name="tishi">提示</string>
+	<string name="auth_account">登录账号</string>
+ 
+	
+	<string name="Error_Service_Not_Available">服务临时不可用</string>
+	<string name="Error_More_Frequent_Invoke_API">调用次数过于频繁</string>
+	<string name="Error_Thirdparty_Platform_Error">第三方开发平台出错</string>
+	<string name="Error_Miss_Parameter">参数缺失错误</string>
+	<string name="Error_No_Access_Token">未获得token信息</string>
+	<string name="Error_Session_Experid">登陆会话已经过期</string>
+	<string name="Error_No_Active_Platform">未激活任何平台</string>
+	<string name="Error_Exceed_Maximun_Upload_File_Size">文件大小超过最大上传限制</string>
+	
+	
+	<string name="Error_No_Access_Network_Priviledge">当前应用没有访问互联网的权限</string>
+	<string name="Error_No_Network_Support">当前没有可以访问的网络</string>
+	<string name="Error_Invalid_Platform_Type">无效的平台类型</string>
+	<string name="Error_Invalid_App_Key">无效的APP_KEY</string>
+	
+	
+	
+</resources>

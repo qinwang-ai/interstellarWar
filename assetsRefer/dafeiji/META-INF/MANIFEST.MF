@@ -1,0 +1,555 @@
+Manifest-Version: 1.0
+Created-By: 1.0 (Android)
+
+Name: assets/item_coming.wav
+SHA1-Digest: ZT6ZmWuK7bOOp8482LCsXZzs7Kw=
+
+Name: com/baidu/social/R/icon_kaixin_gray.png
+SHA1-Digest: LiyKZHamYxHbxOCl1NuUBb2MroY=
+
+Name: assets/close1 2.png
+SHA1-Digest: iSL4pc93cj3OgV7cY3FBF+Zo7Dw=
+
+Name: com/baidu/social/R/icon_sharechoise_qzone.png
+SHA1-Digest: prNw3JUIz2593TCC3NHFdamkPOM=
+
+Name: assets/bullet.mp3
+SHA1-Digest: d5JiyXIMMeDYSt50G8zqczbRvME=
+
+Name: assets/bullet1.png
+SHA1-Digest: +5uF+xnQ1c86QlIO2QaUB6OsUrU=
+
+Name: assets/close2 2.png
+SHA1-Digest: AG8XCykwfw9ougtvfDZeI3Kx1BE=
+
+Name: assets/plane3_idle3.png
+SHA1-Digest: zcirrEEN1AgvAfPjQtxjdw260iE=
+
+Name: assets/buy3.png
+SHA1-Digest: D1r/mT/e9qTilR+zbIW6rSipxvA=
+
+Name: assets/get_item.mp3
+SHA1-Digest: uLMxFwEF9pGL4T2HdlQ4U4KJ5q8=
+
+Name: com/baidu/social/R/title_background_cof.png
+SHA1-Digest: Znum/rr0KDrQfIzoxs4h9SJ5cyU=
+
+Name: assets/shopbg.png
+SHA1-Digest: rcu7rRdXXGfWj6QsTV+lpoWDWDY=
+
+Name: assets/rest_game0.png
+SHA1-Digest: styKvavxy+cQNisYThaGmnzqBuk=
+
+Name: com/baidu/social/R/icon_qzone.png
+SHA1-Digest: ouDuDlIuCSxzXkuMBsx+58WsOVo=
+
+Name: assets/xiaofeichuan.png
+SHA1-Digest: fQta/wIngkPfhsKwuee/VcmuYkc=
+
+Name: com/baidu/social/R/icon_share_qzone_gray.png
+SHA1-Digest: uxKOa8GTgo4mvToZ7op+mOxa+II=
+
+Name: com/baidu/social/R/logo_sinaweibo.png
+SHA1-Digest: I3p/7ZAf4oPMh9JbPxYBxe241YM=
+
+Name: assets/scrollBar.png
+SHA1-Digest: jG1sdfgz7A4hl4FcyvIUziALBDw=
+
+Name: com/baidu/social/R/logo_weixin.png
+SHA1-Digest: rduYqroQKMt7oUe9E45Q0IF2gNk=
+
+Name: assets/plane2_idle2.png
+SHA1-Digest: +8LP/c4bP2JNIsITRmk15nRh5KI=
+
+Name: assets/plane1_idle1.png
+SHA1-Digest: ftL5du6F4+JS0Rx+oFN2aAeGw+M=
+
+Name: com/baidu/social/R/share_btn_click.9.png
+SHA1-Digest: DCJOm5IAlEwaowggJomUFdKYMzM=
+
+Name: assets/backpoint2.png
+SHA1-Digest: AWDlAkDo4EUmBeWN5RDHDw4r6ws=
+
+Name: assets/buyButton2.png
+SHA1-Digest: Lp8zFwNs9LW3D+tNQMj+vmXw5qI=
+
+Name: com/baidu/social/R/icon_weixin_timeline.png
+SHA1-Digest: 56XYMB2g4/61MAQqwpV5l3ZyvtE=
+
+Name: assets/plane1_dead1.png
+SHA1-Digest: x+SGr3ZXHIwe70VxbOFutt46AVk=
+
+Name: assets/bigplane_bomb.mp3
+SHA1-Digest: Kusj1K6k715uyFsqSmYOQaEJZCg=
+
+Name: assets/Default.png
+SHA1-Digest: VYXf1FEXG1WZ2HOv4z4E8pcgqOA=
+
+Name: assets/plane2_dead2.png
+SHA1-Digest: V4Ns7sHng4iDWItqLc3Nc2Olwo8=
+
+Name: assets/again2.png
+SHA1-Digest: OxRVbBW2hW+I/zhP48B7bl/ucv8=
+
+Name: com/baidu/social/R/icon_return.png
+SHA1-Digest: 9UhcOFlfa4SdaQjWg7bYQCtrsKc=
+
+Name: assets/about.png
+SHA1-Digest: 10+PflbSHMwBDM7qsWFyCa07g14=
+
+Name: com/baidu/social/R/icon_sina.png
+SHA1-Digest: MlpuBQhepHe7ZQ8Rbf1fCkT5b6M=
+
+Name: lib/armeabi/libgame.so
+SHA1-Digest: uaVLUspgUiS/Hiea467eY4uF60E=
+
+Name: com/baidu/social/R/share_btn.9.png
+SHA1-Digest: HvluJiAlY7ugsNbTjwNhzZdx7Qs=
+
+Name: assets/aboutQQqun.png
+SHA1-Digest: v8scHIWz7sLGKnWINluL+rmeTsE=
+
+Name: assets/buy2.png
+SHA1-Digest: dausCnkK21vx0+lx5+xoxLi49hg=
+
+Name: assets/Icon-72.png
+SHA1-Digest: GS5+0xuHJBHxneIFwb0GGsLqPxU=
+
+Name: assets/mainmenu_sound2.png
+SHA1-Digest: kV3bXWaenWCPzT0TGUGtabd/mxY=
+
+Name: com/baidu/social/R/icon_share.png
+SHA1-Digest: /NceovyyMGdDkUEotJgqHMtCelo=
+
+Name: assets/item1.png
+SHA1-Digest: HVnIn1vwknMY8rAgEmL4rlZ3IpU=
+
+Name: assets/gomenu2.png
+SHA1-Digest: 7vDSoDDPxYr5eb+NGMaIN5e1F2E=
+
+Name: assets/plane0_dead2.png
+SHA1-Digest: 9f76T+p3l/7wv80cwnuXiAQ/kos=
+
+Name: assets/plane3_idle2.png
+SHA1-Digest: zcirrEEN1AgvAfPjQtxjdw260iE=
+
+Name: com/baidu/social/R/logo_weixin_timeline.png
+SHA1-Digest: IxPevtzwWXy7j+9Ib4pXGrhYMuk=
+
+Name: assets/pause.wav
+SHA1-Digest: SWDdF5fQrKL3rfk92phfixgCLBc=
+
+Name: assets/platforms.xml
+SHA1-Digest: SODXAHs+lAmlrV7JD9VVNfKQgw0=
+
+Name: assets/background.mp3
+SHA1-Digest: YS2XYXstOwepqJWDsPJX4JXdhoc=
+
+Name: assets/xinjiludansheng.png
+SHA1-Digest: QaffewL2C/ohfQuoXLLdGyNPNv8=
+
+Name: assets/aboutDaTu.png
+SHA1-Digest: qsC+h6n1hei4f9uwug7ow1EC1NA=
+
+Name: com/baidu/social/R/logo_tencentweibo.png
+SHA1-Digest: 7A3EeS2WrcIiZcCF9eM1D2r7eGc=
+
+Name: assets/plane0_dead3.png
+SHA1-Digest: JlLNAB1XUCVf/i8Mj4frQjF4lGo=
+
+Name: com/baidu/social/R/icon_tencent_gray.png
+SHA1-Digest: hHRD7vgGpqfO8MH0w0lW4VMpfVc=
+
+Name: assets/score_number.png
+SHA1-Digest: M3wvHzBO6qgLBE/2rOO3lhNGGMM=
+
+Name: assets/back2.png
+SHA1-Digest: wCXOnzIHDjarwZcVC0RhIBi+q4Q=
+
+Name: resources.arsc
+SHA1-Digest: VntZ+Y4l1SGVQeyOFmbhcxmfdis=
+
+Name: assets/mainmenu_bg.png
+SHA1-Digest: vfBfWDxueJeSlvifWMdjdaiunow=
+
+Name: assets/Info.plist
+SHA1-Digest: hSs9FwFlMtzVg8mbUJCMV8bowm4=
+
+Name: assets/bg.png
+SHA1-Digest: zsiaM+3Qgliz4tTsZmcO4GElCWU=
+
+Name: assets/plane1_dead2.png
+SHA1-Digest: HUg8/PQBOxZPKBSS+H8rP6KDG7k=
+
+Name: AndroidManifest.xml
+SHA1-Digest: JwZpPlOye5rmtvlfTE9be7LJAuQ=
+
+Name: assets/mainmenu_rankSocre2.png
+SHA1-Digest: OkP9HAtig3DIFQlepA2DdHpxyUk=
+
+Name: assets/mainmenu_sound1.png
+SHA1-Digest: pk3dbTOVtegRgXnIgFU3/xWYFms=
+
+Name: assets/backMain1.png
+SHA1-Digest: Rg0k4nSaJd2V90/XTpVSEy3qkxs=
+
+Name: assets/Icon-Small-50.png
+SHA1-Digest: dV3riKyvTPkw6PHVlm2GvW4ajgE=
+
+Name: assets/plane1_dead3.png
+SHA1-Digest: 9IUyRacM5JdmpniM5k4PlPENhQ8=
+
+Name: assets/buyButton1.png
+SHA1-Digest: 953FYHHibM/jnCZ/Qy5Xe0hoN6I=
+
+Name: assets/aboutGuanWang.png
+SHA1-Digest: /qTVGw/+pVWcWiOUkF9N1cSboxA=
+
+Name: assets/bullet0.png
+SHA1-Digest: WcYcsXenis+uvNfiB4f9iVxsd1I=
+
+Name: com/baidu/social/R/white_point.png
+SHA1-Digest: 53yZrEhl/HkvDIEZ0vNKgJREdFc=
+
+Name: assets/player_dead.wav
+SHA1-Digest: 1Csgoufqo58OouOmhqLPu6K3cL4=
+
+Name: assets/aboutNumber6.png
+SHA1-Digest: 1Y/yKIIdZzWqc3OBwlQWP4Gjfio=
+
+Name: assets/mainmenu_biglogo.png
+SHA1-Digest: ab1ZT5QICe96wmKuGmdi8CTjc7g=
+
+Name: assets/Icon-Small.png
+SHA1-Digest: wQAx6HPSxCHYDVPXOA6ht3mUVJs=
+
+Name: com/baidu/social/R/authorize_title_background.png
+SHA1-Digest: 7GYMcN+QhI/hfLp9dVrZc/bPjVg=
+
+Name: assets/Icon-114.png
+SHA1-Digest: wrBGrXpz+DqrtPh7xLiFaD+sc3Y=
+
+Name: com/baidu/social/R/returnbutton.png
+SHA1-Digest: LNxtXoMVQVXf864VQyP1gR9RUio=
+
+Name: classes.dex
+SHA1-Digest: RG5ARnRjL9MMfBYMSc71MBK3jtw=
+
+Name: com/baidu/social/R/cancel_btn.9.png
+SHA1-Digest: 45vXQpxn1AohKbDiaK8tYP8eqCs=
+
+Name: com/baidu/social/R/gray_point.png
+SHA1-Digest: ia9JXDQs9DTEEel1sdvaRJHv/dM=
+
+Name: assets/Icon.png
+SHA1-Digest: 8J72YV/+WJmqT2uwCIb0ZaQPfJI=
+
+Name: assets/Default@2x.png
+SHA1-Digest: K58DV2NAqvvBO3iRbwZj1kJHLl0=
+
+Name: assets/goumaidanyao2.png
+SHA1-Digest: U+r6ljFUnZAlbPeNEBkUpMlNMDw=
+
+Name: com/baidu/social/R/icon_image.png
+SHA1-Digest: iUvozI5Hjw1fTltCPHX1qYvrXEc=
+
+Name: com/baidu/social/R/icon_sharechoise_tencent.png
+SHA1-Digest: 3DrI0Ck2LvdDhy90SzbypGZnORE=
+
+Name: assets/Icon-Small@2x.png
+SHA1-Digest: rXF2QCTxEhuxcCKf+NOADXt3ZM4=
+
+Name: com/baidu/social/R/logo_qzone.png
+SHA1-Digest: NpPbf462+YeOa5VqBOMkerHVjSQ=
+
+Name: assets/buy4.png
+SHA1-Digest: 8Th1RyTA+OHrtL/iATOkEGz0sOA=
+
+Name: com/baidu/social/R/middle_shadow.9.png
+SHA1-Digest: x+8XG8QU4B5aEJvLZhw/qzOQ0Yw=
+
+Name: assets/plane3_dead1.png
+SHA1-Digest: Jk1TVz0NVzAPrRip8eaOwPWJ9Rw=
+
+Name: com/baidu/social/R/logo_email.png
+SHA1-Digest: FeeWYyMguyJfR3aNg5qUNyif4r8=
+
+Name: assets/again1.png
+SHA1-Digest: 2Ybgh4waMnzDwm3/nf94mSiCdn8=
+
+Name: assets/Icon-144.png
+SHA1-Digest: 5cd3+lXOfjLrQBxtmUM17A9tXec=
+
+Name: com/baidu/social/R/share_button_send.png
+SHA1-Digest: LXUgPtBylwHH01xQJ/JQ8jfkijQ=
+
+Name: assets/shar1.png
+SHA1-Digest: Gjrm+LlfBlUEHXGwY+hcLigKFI8=
+
+Name: com/baidu/social/R/icon_deletepic.png
+SHA1-Digest: +hsHWRNKwAleyW+Bhp/vns/q1uc=
+
+Name: res/drawable-ldpi/icon.png
+SHA1-Digest: i/KRhOdriaTvqTuppH3RGZ4J8EY=
+
+Name: res/drawable-mdpi/icon.png
+SHA1-Digest: jwSvK1vR14wTcup6bFrBOej7iCI=
+
+Name: com/baidu/social/R/icon_share_sina_gray.png
+SHA1-Digest: RMlpOCYO4cqeKjd46uzJB7ku3VM=
+
+Name: com/baidu/social/R/sharecontent_title_background.png
+SHA1-Digest: bqKbE7trZRdeGh+I1AUEiGD3GMo=
+
+Name: assets/buy5.png
+SHA1-Digest: eRqOzZJVtrD2633w5Ebl7tOxOWY=
+
+Name: assets/plane3_dead4.png
+SHA1-Digest: bqDfQU1rNHKJycO2oWFUQ2KeSZs=
+
+Name: assets/Icon@2x.png
+SHA1-Digest: 5cd3+lXOfjLrQBxtmUM17A9tXec=
+
+Name: assets/continueGame1.png
+SHA1-Digest: qk+C/sr/QtnPa6yaYCAWNAFSZxo=
+
+Name: assets/shoptitle.png
+SHA1-Digest: a7CPzsAvXlt4V2Rz8MGhkvVocxE=
+
+Name: assets/plane0_idle1.png
+SHA1-Digest: 8Cogl+58PYDHpUijLZFEBdVbvQY=
+
+Name: assets/HelloWorld.png
+SHA1-Digest: tlCDturH7ovoyz2c7+EM3+0ot7A=
+
+Name: com/baidu/social/R/icon_share_kaixin_gray.png
+SHA1-Digest: 3zz4boa801YAgCZvum7XWmpgtEw=
+
+Name: com/baidu/social/R/icon_image_gray.png
+SHA1-Digest: xzCDKYGjxz4EFc5oR0ShgA3Ec3I=
+
+Name: assets/Icon-57.png
+SHA1-Digest: 8J72YV/+WJmqT2uwCIb0ZaQPfJI=
+
+Name: assets/plane0_idle2.png
+SHA1-Digest: rztnLwv8m9fy/mozO5EFYML+ojw=
+
+Name: assets/plane2_dead1.png
+SHA1-Digest: Cl+SHBzEIWNaUr5bODFMNzprcWU=
+
+Name: com/baidu/social/R/icon_sms.png
+SHA1-Digest: 2XMc74pxmpwqquACwbg5ayCAUWE=
+
+Name: com/baidu/social/R/icon_share_tencent_gray.png
+SHA1-Digest: wjjdrtRT/KqJK14oNFTgRPPRS/k=
+
+Name: assets/gomenu1.png
+SHA1-Digest: 94qa5DsZcSp5kRqn+z52VG/itnk=
+
+Name: assets/item2.png
+SHA1-Digest: wh25vXyA9YFtg4OmbOkAGr6r0c4=
+
+Name: com/baidu/social/R/icon_share_weichat_gray.png
+SHA1-Digest: w7+VSlCmNzMnLHKdASxcK+v+L+8=
+
+Name: assets/close1.png
+SHA1-Digest: FqBRJX7NxhC+uSfNTOqpzCNqepE=
+
+Name: assets/emptyAbout.png
+SHA1-Digest: E+hp73sW4lILZaiQdQoDn+aenYo=
+
+Name: assets/close2.png
+SHA1-Digest: Ei98LPPDhhnPthzQIUa3oFwcnT4=
+
+Name: assets/aboutNumber2.png
+SHA1-Digest: EVdrj7ag2E+EhunC0OPW3eokzkE=
+
+Name: com/baidu/social/R/button_background.9.png
+SHA1-Digest: WX7qLs0KkGsuFzfZAI44OJD0TkA=
+
+Name: assets/mainmenu_logo.png
+SHA1-Digest: 3jOceAYj7YVAvukaF7MvQWnjdV8=
+
+Name: com/baidu/social/R/title_background.9.png
+SHA1-Digest: aodUGLJRSOZcMOPgFpn45JEM5Tc=
+
+Name: assets/rest_game1.png
+SHA1-Digest: 90D1hUpXGoJSAjsK4nfaTOqx1F4=
+
+Name: assets/jixu2.png
+SHA1-Digest: auE2qKIiRIxT/tIqc0DcnSdIgYo=
+
+Name: com/baidu/social/R/strings.xml
+SHA1-Digest: ci+0ANeMJzMXa5ACneaO1Fdvc8Y=
+
+Name: assets/aboutNumber1.png
+SHA1-Digest: fC+YOfTiSxBbNIxA899hYu+UVcg=
+
+Name: com/baidu/social/R/icon_weixin.png
+SHA1-Digest: w4GhKq7Wv3zu4mutKiClf6PHmh8=
+
+Name: com/baidu/social/R/icon_share_renren_gray.png
+SHA1-Digest: UFnxHvQ9CChUddgdYpwLlQXZWng=
+
+Name: assets/plane1_idle2.png
+SHA1-Digest: DuKB3IcZo4mOYnZHkbNpkOU+avg=
+
+Name: assets/thisSoc.png
+SHA1-Digest: H9rMlactVWq+12ko6DuDB5gFB94=
+
+Name: assets/aboutTitle.png
+SHA1-Digest: eKqNY+65vrXFT7q2d6oDOVrDWiM=
+
+Name: com/baidu/social/R/icon_sharechoise_kaixin.png
+SHA1-Digest: RGbke9q6oAaZaK71594p9qvXvUA=
+
+Name: com/baidu/social/R/icon_email.png
+SHA1-Digest: yDBV3Qr31xvlyQo3pg+JcgPYRiA=
+
+Name: assets/Default-568h@2x.png
+SHA1-Digest: Hi1NK67r4rVkPyBr4kUMa93BQi0=
+
+Name: assets/coutinueGame.png
+SHA1-Digest: tCpGKbdxW6f52c/g9Wv0FQb9HOI=
+
+Name: assets/plane2_effect1.png
+SHA1-Digest: bBlg7hUAAIIWmUFN/cKxwW6T47Q=
+
+Name: com/baidu/social/R/share_button_cancel.png
+SHA1-Digest: LXUgPtBylwHH01xQJ/JQ8jfkijQ=
+
+Name: assets/CloseSelected.png
+SHA1-Digest: jAGLZR1Zw3vujySy5fwK5FRJTgA=
+
+Name: assets/CloseNormal.png
+SHA1-Digest: /QGcO1MOwaLN1VS5dk86sEDqqKA=
+
+Name: assets/backMain.png
+SHA1-Digest: lNTAGjG9pxiUmwYxT4luuhVHgGY=
+
+Name: assets/plane2_dead3.png
+SHA1-Digest: yZ1UVYngq9gwPWqyitFrRotyfoI=
+
+Name: assets/plane3_dead3.png
+SHA1-Digest: FYuhZML0uqyMvAxicjlxBi+DD5g=
+
+Name: com/baidu/social/R/icon_sharechoise_sina.png
+SHA1-Digest: k0sPeACLz7lYN4mUagJP4XI9uic=
+
+Name: com/baidu/social/R/button_cancel.9.png
+SHA1-Digest: jFuBW+GcWvzFHx60R5fg9qb/AH8=
+
+Name: assets/goumaidanyao1.png
+SHA1-Digest: P5/9oCcyels3QiuBSj8ORgFo0kY=
+
+Name: assets/iTunesArtwork
+SHA1-Digest: aUHj5b3DvHdve2xdq/f8Xa45Noo=
+
+Name: assets/plane3_dead2.png
+SHA1-Digest: oO9jExJsW+ko6sxXVchstFHVi0g=
+
+Name: assets/backpoint1.png
+SHA1-Digest: 2Ic62dHgZ6qkwzO9kdwyKdbBrxY=
+
+Name: assets/jixu1.png
+SHA1-Digest: Jv5TgYEOnU9xAvnXyDPth8uw9DU=
+
+Name: assets/plane2_idle1.png
+SHA1-Digest: oKuNW++yqSjFKXmQkL6DajDYkDw=
+
+Name: assets/aboutNumber8.png
+SHA1-Digest: rWP7Q2ZUN6PcIScUd+8pnIAYWIQ=
+
+Name: com/baidu/social/R/tishi.png
+SHA1-Digest: CRgD6tcwByZ4qd29tBvLKuW6xkM=
+
+Name: com/baidu/social/R/logo_kaixin.png
+SHA1-Digest: oD4gX6ikLOV1b3jS2dKYED4oELM=
+
+Name: com/baidu/social/R/icon_qzone_gray.png
+SHA1-Digest: jPGCrO18a1ptZQRrDnTWvR+j77k=
+
+Name: res/drawable-xhdpi/icon.png
+SHA1-Digest: PW9EHGn4J8m2RRHNTM0XcY5wr4o=
+
+Name: assets/mainmenu_bili.png
+SHA1-Digest: 1zrwF36VPRsXg9zcxMnNt+ptNLo=
+
+Name: assets/plane3_effect1.png
+SHA1-Digest: AGPtuFfUAmtNGyokBHtWP67Bszg=
+
+Name: com/baidu/social/R/text_bg.9.png
+SHA1-Digest: V1yny+2rU1e7Sy3Gfc1/A+OwZYI=
+
+Name: assets/shar2.png
+SHA1-Digest: 0mw1hk0eOVXxf3ifcrWveXfas8M=
+
+Name: com/baidu/social/R/icon_kaixin.png
+SHA1-Digest: Ebw1l/DOYQa1aoBkGQelxyF9pzc=
+
+Name: assets/mainmenu_begin1.png
+SHA1-Digest: Z/FwgOaMxP+rRis9Jc6S2G3GnMQ=
+
+Name: assets/aboutNumber.png
+SHA1-Digest: W9moeCTdoiU5+ZUu/Zd/fzAuOD8=
+
+Name: assets/plane3_idle1.png
+SHA1-Digest: NkCqBb/BmGH9Ph9SYyBRoSLa6Lg=
+
+Name: assets/plane2_dead4.png
+SHA1-Digest: nQTE50Nnt5s9XLxu1EiWwtQ5NFk=
+
+Name: assets/mainmenu_weixin.png
+SHA1-Digest: Piy5DuO6iLZ+su0Drv153mHFyhs=
+
+Name: assets/buy1.png
+SHA1-Digest: wsHJa3Iug5CgBRQ4iaQdYVJwSG0=
+
+Name: assets/item_bomb.wav
+SHA1-Digest: 9CfS1QAq5akQ+keQXeFQ3ZG1YhI=
+
+Name: assets/plane_bomb.wav
+SHA1-Digest: rEcqx0BIXubA156m/bhtplv1Xb8=
+
+Name: com/baidu/social/R/tray_background.9.png
+SHA1-Digest: bMN/jCCMZYYRn45ra/oex/0cNw0=
+
+Name: assets/item1_icon.png
+SHA1-Digest: W58gADHlknZ552oFgShclFI2rgU=
+
+Name: com/baidu/social/R/icon_tencent.png
+SHA1-Digest: ehtsdYiQ+xecpx5+/k2NKKCL1CY=
+
+Name: assets/tiao.png
+SHA1-Digest: nteDKwGOy8ouXNYruqVDneK+wWk=
+
+Name: assets/mainmenu_rankSocre1.png
+SHA1-Digest: LooRmVRKo8QwtSYLnF1M8vh2dd0=
+
+Name: assets/overbg.png
+SHA1-Digest: hO1fpd5bGMVa+JhWc8DI+52nKbM=
+
+Name: com/baidu/social/R/logo_sms.png
+SHA1-Digest: OKG1c3uU8J8iOw70R69IIrxDoO4=
+
+Name: assets/plane0_dead1.png
+SHA1-Digest: wtVGMXvovi43sJuhcc6PTPHFV48=
+
+Name: assets/back1.png
+SHA1-Digest: EUDHgujLrQHvAJORtgLYqT9/Btw=
+
+Name: assets/mainmenu_begin2.png
+SHA1-Digest: Nqf9TM3GcFPDL98NdR4QR1WfefM=
+
+Name: assets/mainmenu_topScoreImg.png
+SHA1-Digest: gnStn7Lpl2ttwsMOQEWQpFo9ZvM=
+
+Name: res/drawable-hdpi/icon.png
+SHA1-Digest: Ezuvk6DhUcrg6WpVgmagTd2ZtNM=
+
+Name: assets/aboutNumber7.png
+SHA1-Digest: SoFbgPxJqoImw/lgcTpx207zYjI=
+
+Name: assets/score_number.plist
+SHA1-Digest: fmUsNzV9kxe08Ygi5O6fIP8XOfE=
+
