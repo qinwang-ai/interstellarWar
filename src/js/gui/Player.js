@@ -2,7 +2,7 @@ var Player = (function () {
 	function Player () {
 		var  s = this;
 		var bmpd = new LBitmapData(dataList["player"]),
-		frameList = LGlobal.divideCoordinate(292, 126, 1, 2);
+		frameList = aircraft_animation_data["player"];
 		LExtends(s, Aircraft, [bmpd, frameList]);
 
 		s.addEventListener(LEvent.ENTER_FRAME, s.loop);
@@ -28,7 +28,23 @@ var Player = (function () {
 	};
 
 	Player.prototype.loop = function (e) {
-		var s = e.currentTarget;
+		var s = e.currentTarget,
+		leftEdge = 80,
+		rightEdge = LGlobal.width - 80,
+		topEdge = 80,
+		bottomEdge = LGlobal.height - 80;
+
+		if (s.x < leftEdge) {
+			s.x = leftEdge;
+		} else if (s.x > rightEdge) {
+			s.x = rightEdge;
+		}
+
+		if (s.y < topEdge) {
+			s.y = topEdge;
+		} else if (s.y > bottomEdge) {
+			s.y = bottomEdge;
+		} 
 	};
 
 	return Player;
