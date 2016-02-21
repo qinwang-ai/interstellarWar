@@ -21,6 +21,7 @@ function loadResource () {
 		{path : "./data/aircraft_animation_data.js"},
 
 		{path : "./js/gui/GameLayer.js"},
+		{path : "./js/gui/Background.js"},
 		{path : "./js/gui/Aircraft.js"},
 		{path : "./js/gui/Player.js"},
 		{path : "./js/gui/Enemy.js"},

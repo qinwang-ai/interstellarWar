@@ -5,6 +5,9 @@ var Enemy = (function () {
 		frameList = aircraft_animation_data["enemy" + index];
 		LExtends(s, Aircraft, [bmpd, frameList]);
 
+		s.x = LGlobal.width + 100;
+		s.y = 100 + ((Math.random() * (LGlobal.height - 100)) >>> 0);
+
 		s.step = 3;
 		s.angle = 0;
 

@@ -1,13 +1,23 @@
 # interstellarWar
 
-# How to Control Player
+# 如何控制人物
 
 ```
-if (player) {
-	player.moveTo(x, y);
-	player.setRotation(angle);
-}
+// leap.js
+
+// 当leap motion接口检测到手移动时，执行以下函数
+var eve = new LEvent(LeapEventDispatcher.EVENT_HAND_MOVE);
+eve.angle = 角度;
+leapED.dispatchEvent(eve);
 ```
+角度说明，这个角度的坐标轴如下：
+o ---> x
+| \ )a
+|  \
+V y \
+
+o是飞机位置，可以看到，和平时数学作业中的笛卡尔坐标的y是反的。a就是角度。
+
 
 # 如何使用事件驱动
 我写了一个类LeapEventDispatcher，用于触发事件，在Main.js中我写了
@@ -56,7 +66,7 @@ dispatchEvent方法可以传入一个LEvent作为参数，然后可以通过它�
 leapED.addEventListener(LeapEventDispatcher.EVENT_HAND_MOVE, handMove);
 
 function handMove (e) {
-	alert(e.x + "," + e.y);
+	alert(e.angle);
 }
 ```
 
@@ -65,8 +75,7 @@ function handMove (e) {
 
 // 当leap motion接口检测到手移动时，执行以下函数
 var eve = new LEvent(LeapEventDispatcher.EVENT_HAND_MOVE);
-eve.x = leap motion得到的x;
-eve.y = leap motion得到的y;
+eve.angle = sin值;
 leapED.dispatchEvent(eve);
 ```
 
