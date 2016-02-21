@@ -1,20 +1,23 @@
 var cats = {};
 
 Leap.loop(function(frame) {
-
 	frame.hands.forEach(function(hand, index) {
-
 		var cat = ( cats[index] || (cats[index] = new Cat()) );
 		cat.setTransform(hand.screenPosition(), hand.roll());
 	});
 
-}).use('screenPosition', {scale: 0.25})
+})
+.use('screenPosition', {scale: 0.25})
 .use('handEntry')
 .on('handFound', function(hand){
-    console.log( 'hand found', hand );
+	if(leapED) {
+//		leapED.dispatchEvent(LeapEventDispatcher.EVENT_HAND_FOUND);
+	}
 })
 .on('handLost', function(hand){
-    console.log( 'hand Lost', hand );
+	if(leapED) {
+//		leapED.dispatchEvent(LeapEventDispatcher.EVENT_HAND_LOST);
+	}
 });
 
 
@@ -23,12 +26,15 @@ var Cat = function() {
 	var cat = this;
 	cat.setTransform = function(position, rotation) {
 
-//		Leap.vec3.subtract(position, position, this.frame.interactionBox.center)
-		if (player) {
-    		console.log( 'hand Lost', position[1] );
+		if (leapED) {
 			var degree = rotation * (180/Math.PI);
-			player.moveTo( position[0], position[1]);
-			player.setRotation(degree);
+			var rate = 1;
+			console.log(degree);
+			var eve = new LEvent(LeapEventDispatcher.EVENT_HAND_MOVE);
+			eve.angle = degree;
+		//	ABOUNDAND eve.x = (position[0]/window.screen.width)*LGlobal.width*rate - 600;
+		//	ABOUNDAND eve.y = (position[1]/window.screen.height)*LGlobal.height*rate - 300;
+			leapED.dispatchEvent(eve);
 		}
 	};
 

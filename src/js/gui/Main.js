@@ -69,5 +69,4 @@ function handLost () {
 }
 
 function handMove (e) {
-	alert(e.x + "," + e.y);
 }
