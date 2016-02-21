@@ -2,6 +2,7 @@ LInit(1000 / 60, "mygame", 800, 480, main);
 
 var dataList;
 var stageLayer;
+var player;
 
 function main () {
 	LGlobal.stageScale = LStageScaleMode.SHOW_ALL;
@@ -12,7 +13,11 @@ function main () {
 
 function loadResource () {
 	var loadList = [
-		{name : "bg", path : "./images/bg.png"}
+	 	{path : "./js/gui/Aircraft.js"},
+	 	{path : "./js/gui/Player.js"},
+
+		{name : "bg", path : "./images/bg.png"},
+		{name : "player", path : "./images/player.png"}
 	];
 
 	LLoadManage.load(loadList, null, function (result) {
@@ -29,10 +34,6 @@ function gameInit (result) {
 	var bg = new LBitmap(new LBitmapData(dataList["bg"]));
 	stageLayer.addChild(bg);
 
-	var txt = new LTextField();
-	txt.text = "Hello Interstellar War";
-	txt.size = 40;
-	txt.x = (LGlobal.width - txt.getWidth()) / 2;
-	txt.y = (LGlobal.height - txt.getHeight()) / 2;
-	stageLayer.addChild(txt);
+	player = new Player();
+	stageLayer.addChild(player);
 }
