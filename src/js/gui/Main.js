@@ -36,4 +36,8 @@ function gameInit (result) {
 
 	player = new Player();
 	stageLayer.addChild(player);
+
+	stageLayer.addEventListener(LMouseEvent.MOUSE_MOVE, function (e) {
+		player.moveTo(e.selfX, e.selfY);
+	});
 }

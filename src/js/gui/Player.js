@@ -4,19 +4,31 @@ var Player = (function () {
 		var bmpd = new LBitmapData(dataList["player"]),
 		frameList = LGlobal.divideCoordinate(292, 126, 1, 2);
 		LExtends(s, Aircraft, [bmpd, frameList]);
+
+		s.addEventListener(LEvent.ENTER_FRAME, s.loop);
 	}
 
 	Player.prototype.moveTo = function (x, y) {
 		var s = this;
 		
-		s.x = x;
-		s.y = y;
+		LTweenLite.to(player, 0.3, {
+			x : x,
+			y : y,
+			ease : LEasing.Strong.easeOut
+		});
 	};
 
 	Player.prototype.setRotation = function (a) {
-		var  s = this;
+		var s = this;
 
-		s.rotate = a;
+		LTweenLite.to(player, 1, {
+			rotate : a,
+			ease : LEasing.Strong.easeOut
+		});
+	};
+
+	Player.prototype.loop = function (e) {
+		var s = e.currentTarget;
 	};
 
 	return Player;
