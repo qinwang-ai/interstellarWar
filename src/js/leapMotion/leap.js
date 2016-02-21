@@ -4,34 +4,32 @@ Leap.loop(function(frame) {
 
 	frame.hands.forEach(function(hand, index) {
 
-		var cat = ( cats[index] || (cats[index] = new Cat()) );    
+		var cat = ( cats[index] || (cats[index] = new Cat()) );
 		cat.setTransform(hand.screenPosition(), hand.roll());
-
 	});
 
-}).use('screenPosition', {scale: 0.25});
+}).use('screenPosition', {scale: 0.25})
+.use('handEntry')
+.on('handFound', function(hand){
+    console.log( 'hand found', hand );
+})
+.on('handLost', function(hand){
+    console.log( 'hand Lost', hand );
+});
+
 
 
 var Cat = function() {
 	var cat = this;
-	var img = document.createElement('img');
-	img.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/109794/cat_2.png';
-	img.style.position = 'absolute';
-	img.onload = function () {
-		cat.setTransform([window.innerWidth/2,window.innerHeight/2], 0);
-		document.body.appendChild(img);
-	}
-
 	cat.setTransform = function(position, rotation) {
 
-		img.style.left = position[0] - img.width  / 2 + 'px';
-		img.style.top  = position[1] - img.height / 2 + 'px';
-
-		img.style.transform = 'rotate(' + -rotation + 'rad)';
-
-		img.style.webkitTransform = img.style.MozTransform = img.style.msTransform =
-			img.style.OTransform = img.style.transform;
-
+//		Leap.vec3.subtract(position, position, this.frame.interactionBox.center)
+		if (player) {
+    		console.log( 'hand Lost', position[1] );
+			var degree = rotation * (180/Math.PI);
+			player.moveTo( position[0], position[1]);
+			player.setRotation(degree);
+		}
 	};
 
 };
