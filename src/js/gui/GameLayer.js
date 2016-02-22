@@ -3,8 +3,6 @@ var GameLayer = (function () {
 		var  s = this;
 		LExtends(s, LSprite, []);
 
-		player = null;
-
 		s.sceneLayer = new LSprite();
 		s.addChild(s.sceneLayer);
 
@@ -18,11 +16,11 @@ var GameLayer = (function () {
 
 		s.createBg();
 
-		s.aircraftLayer = new LSprite();
-		s.sceneLayer.addChild(s.aircraftLayer);
-
 		s.bulletLayer = new LSprite();
 		s.sceneLayer.addChild(s.bulletLayer);
+
+		s.aircraftLayer = new LSprite();
+		s.sceneLayer.addChild(s.aircraftLayer);
 
 		s.createPlayer();
 		s.createSceneThumbnail();
@@ -56,8 +54,6 @@ var GameLayer = (function () {
 		s.player.x = s.bg.w / 2;
 		s.player.y = s.bg.h / 2;
 		s.aircraftLayer.addChild(s.player);
-
-		player = s.player;
 	};
 
 	GameLayer.prototype.createSceneThumbnail = function () {

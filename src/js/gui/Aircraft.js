@@ -8,10 +8,11 @@ var Aircraft = (function () {
 		s.useTween = false;
 		s.isPlayer = false;
 		s.isShoot = false;
-		s.shootSpeed = 10;
+		s.shootSpeed = null;
 		s.shootIndex = 0;
 		s.bulletStyle = null;
 		s.bulletStep = 0;
+		s.bulletNum = 0;
 
 		s.animation = new LAnimationTimeline(bmpd, frameList);
 		s.animation.x = -bmpd.width / 2;
@@ -38,11 +39,11 @@ var Aircraft = (function () {
 		} else {
 			LTweenLite.to(s, 0.5, {
 				rotate : s.angle,
-				ease : LEasing.Strong.easeOut
+				ease : LEasing.Quad.easeOut
 			});
 		}
 
-		if (s.isShoot) {
+		if (s.isShoot && s.shootSpeed != null) {
 			if (s.shootIndex++ < s.shootSpeed) {
 				return;
 			}

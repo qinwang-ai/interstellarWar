@@ -9,14 +9,16 @@ var Player = (function () {
 		s.angle = -90;
 		s.isPlayer = true;
 		s.isShoot = true;
+		s.shootSpeed = 10;
 		s.bulletStyle = 1;
 		s.bulletStep = 15;
+		s.bulletNum = 4;
 
 		s.addEventListener(LEvent.ENTER_FRAME, s.loop);
 	}
 
 	Player.prototype.loop = function (e) {
-		var s = e.currentTarget, bg = s.parent.parent.parent.bg;
+		var s = e.currentTarget, bg = gameLayer.bg;
 		leftEdge = bg.x + 80,
 		rightEdge = bg.x + bg.w - 80,
 		topEdge = bg.y + 80,
@@ -39,16 +41,16 @@ var Player = (function () {
 
 	Player.prototype.addBullet = function () {
 		var s = this,
-		bulletNum = 4,
+		bulletNum = s.bulletNum,
 		d = 20,
-		p = d * ((bulletNum / 2) >>> 0),
+		p = d * (bulletNum - 1) / 2,
 		rad = (s.angle / 180) * Math.PI;
 
 		for (var i = 0; i < bulletNum; i++) {
 			var b = new Bullet(s.bulletStyle, s.angle, s.bulletStep);
 			b.x = s.x + p * Math.sin(rad);
 			b.y = s.y - p * Math.cos(rad);
-			s.parent.parent.parent.bulletLayer.addChild(b);
+			gameLayer.bulletLayer.addChild(b);
 			
 			p -= d;
 		}

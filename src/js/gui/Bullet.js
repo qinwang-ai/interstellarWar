@@ -18,7 +18,7 @@ var Bullet = (function () {
 	}
 
 	Bullet.prototype.loop = function (e) {
-		var s = e.currentTarget, bg = s.parent.parent.parent.bg, m = 10;
+		var s = e.currentTarget, bg = gameLayer.bg, m = 10;
 
 		s.x += s.stepX;
 		s.y += s.stepY;

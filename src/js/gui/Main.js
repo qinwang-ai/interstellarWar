@@ -2,7 +2,7 @@ LInit(1000 / 60, "mygame", 960, 640, main);
 
 var dataList;
 var stageLayer;
-var player;
+var gameLayer;
 var leapED;
 
 function main () {
@@ -19,6 +19,7 @@ function main () {
 function loadResource () {
 	var loadList = [
 		{path : "./data/aircraft_animation_data.js"},
+		{path : "./data/enemy_data.js"},
 
 		{path : "./js/gui/GameLayer.js"},
 		{path : "./js/gui/Background.js"},
@@ -62,7 +63,7 @@ function gameInit (result) {
 }
 
 function startGame () {
-	var gameLayer = new GameLayer();
+	gameLayer = new GameLayer();
 	stageLayer.addChild(gameLayer);
 }
 
@@ -75,7 +76,7 @@ function handLost () {
 }
 
 function handMove (e) {
-	if (player) {
-		player.moveTowards(e.angle);
+	if (gameLayer && gameLayer.player) {
+		gameLayer.player.moveTowards(e.angle);
 	}
 }
