@@ -85,12 +85,6 @@ function handMove (e) {
 	}
 }
 
-function startGame () {
-	console.log("startGame");
-	isStartGame = true;
-	// do sth...
-}
-
 function superKill () {
 	console.log("superkill is running");
 	isSuperKill = true;
