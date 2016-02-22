@@ -1,7 +1,9 @@
 var Bullet = (function () {
-	function Bullet (style, angle, step, shootRange) {
+	function Bullet (style, angle, step, shootRange, belongToPlayer) {
 		var  s = this;
 		LExtends(s, LSprite, []);
+
+		s.belongToPlayer = belongToPlayer || false;
 
 		var bmp = new LBitmap(new LBitmapData(dataList["bullet" + style]));
 		bmp.x = -bmp.getWidth() / 2;
@@ -16,12 +18,10 @@ var Bullet = (function () {
 		s.changeX = 0;
 		s.changeY = 0;
 		s.shootRange = shootRange;
-
-		s.addEventListener(LEvent.ENTER_FRAME, s.loop);
 	}
 
-	Bullet.prototype.loop = function (e) {
-		var s = e.currentTarget, bg = gameLayer.bg, m = 10;
+	Bullet.prototype.loop = function () {
+		var s = this, bg = gameLayer.bg, rml = new Array(), m = 10;
 
 		s.x += s.stepX;
 		s.y += s.stepY;
@@ -30,6 +30,28 @@ var Bullet = (function () {
 
 		s.changeX += s.stepX;
 		s.changeY += s.stepY;
+
+		if (gameLayer.quadTree) {
+			var cl = gameLayer.quadTree.getDataInRect(new LRectangle(s.x - 20, s.y - 20, 68, 52));
+			
+			for (var i = 0, l = cl.length; i < l; i++) {
+				var o = cl[i];
+
+				if (s.hitTestObject(o) && o.isPlayer == !s.belongToPlayer) {
+					if (o.reduceHp(1)) {
+						rml.push(o);
+					}
+
+					s.remove();
+				}
+			}
+
+			for (var j = 0, m = rml.length; j < m; j++) {
+				rml[j].remove();
+
+				gameLayer.quadTree.remove(o);
+			}
+		}
 
 		if (s.shootRange) {
 			if (Math.sqrt(s.changeY * s.changeY + s.changeX * s.changeX) > s.shootRange) {

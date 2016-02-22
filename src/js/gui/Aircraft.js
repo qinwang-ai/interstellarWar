@@ -4,8 +4,8 @@ var Aircraft = (function () {
 		LExtends(s, LSprite, []);
 
 		s.angle = 0;
+		s.atkAngle = 0;
 		s.step = 0;
-		s.useTween = false;
 		s.isPlayer = false;
 		s.isShoot = false;
 		s.shootIndex = 0;
@@ -20,6 +20,9 @@ var Aircraft = (function () {
 		s.animation.y = -bmpd.height / 2;
 		s.addChild(s.animation);
 
+		s.w = bmpd.width;
+		s.h = bmpd.height;
+
 		s.animation.play();
 	}
 
@@ -27,22 +30,22 @@ var Aircraft = (function () {
 		this.angle = a;
 	};
 
-	Aircraft.prototype.loop = function (e) {
-		var s = e.currentTarget;
+	Aircraft.prototype.atkTowards = function (a) {
+		this.atkAngle = a;
+	};
+
+	Aircraft.prototype.loop = function () {
+		var s = this;
+
+		if (gameLayer.quadTree) {
+			gameLayer.quadTree.remove(s);
+			gameLayer.quadTree.add(s, s.x, s.y);
+		}
 
 		var rad = s.angle * Math.PI / 180;
 
 		s.x += s.step * Math.cos(rad);
 		s.y += s.step * Math.sin(rad);
-
-		if (!s.useTween) {
-			s.rotate = s.angle;
-		} else {
-			LTweenLite.to(s, 0.5, {
-				rotate : s.angle,
-				ease : LEasing.Quad.easeOut
-			});
-		}
 
 		if (s.isShoot && s.shootSpeed && s.bulletNum && s.bulletStep && s.bulletStyle) {
 			if (s.shootIndex++ < s.shootSpeed) {
@@ -63,13 +66,49 @@ var Aircraft = (function () {
 		rad = (s.angle / 180) * Math.PI;
 
 		for (var i = 0; i < bulletNum; i++) {
-			var b = new Bullet(s.bulletStyle, s.angle, s.bulletStep, s.shootRange);
+			var b = new Bullet(s.bulletStyle, s.atkAngle, s.bulletStep, s.shootRange, s.isPlayer);
 			b.x = s.x + p * Math.sin(rad);
 			b.y = s.y - p * Math.cos(rad);
 			gameLayer.bulletLayer.addChild(b);
 			
 			p -= d;
 		}
+	};
+
+	Aircraft.prototype.reduceHp = function (v) {
+		var s = this;
+
+		s.hp -= v;
+
+		if (s.hp <= 0) {
+			if (gameLayer && gameLayer.sceneLayer) {
+				var bmpd = new LBitmapData(dataList["explosion"]),
+				frameList = LGlobal.divideCoordinate(468, 125, 1, 4);
+				var explosion = new LAnimationTimeline(bmpd, frameList);
+				explosion.x = s.x - bmpd.width / 2;
+				explosion.y = s.y - bmpd.height / 2;
+				explosion.speed = 3;
+				gameLayer.sceneLayer.addChild(explosion);
+
+				explosion.play();
+
+				explosion.addEventListener(LEvent.COMPLETE, function () {
+					explosion.remove();
+				});
+			}
+
+			return true;
+		}
+
+		LTweenLite.to(s, 0.1, {
+			alpha : 0.2,
+			ease : LEasing.Quad.easeIn
+		}).to(s, 0.1, {
+			alpha : 1,
+			ease : LEasing.Quad.easeOut
+		});
+
+		return false;
 	};
 
 	return Aircraft;

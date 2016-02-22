@@ -1,5 +1,17 @@
 # interstellarWar
 
+
+# 如何使用拼图工具
+进入stitching_animation/index.html，更改imgList数组，把动画图片路径按顺序加到这个数组中。打开index.html。得到含有动画的画布，对画布右键：Save image as... 就能保存画布中的图片。
+
+# 几个变量需要调整
+我觉得几个开关如isStartGame需要加到一个叫SwitchVar的类中保管，避免全局变量太多。这块你可以暂时不用动。我明天下午说不定可以搞定。
+
+
+时间有限，没来得及加注释，不过你可以多看lufylegend的文档，看了之后更容易了解。（一切L开头的类都是lufylegend提供的）地址lufylegend.com/lufylegend
+
+
+
 # 如何控制人物
 
 ```

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stitching Animation</title>
+	<script type="text/javascript">
+		var imgList = ["./plane3_dead1.png", "./plane3_dead2.png", "./plane3_dead3.png", "./plane3_dead4.png"];
+		var imgObjList = [];
+		var imgIndex = 0, h = 0;
+		var canvasObj, c;
+
+		window.onload = function () {
+			canvasObj = document.getElementById("mycanvas");
+			c = canvasObj.getContext("2d");
+
+			loadOne();
+		};
+
+		function loadOne() {
+			if (imgIndex >= imgList.length) {
+				drawThem();
+
+				return;
+			}
+
+			var img = new Image();
+			img.src = imgList[imgIndex++];
+			img.onload = function () {
+				imgObjList.push(img);
+
+				loadOne();
+			};
+		}
+
+		function drawThem () {
+			var maxW = 0, maxH = 0;
+
+			for (var j = 0; j < imgObjList.length; j++) {
+				var img = imgObjList[j];
+
+				if (img.width > maxW) {
+					maxW = img.width;
+				}
+
+				if (img.height > maxH) {
+					maxH = img.height;
+				}
+			}
+
+			canvasObj.width = maxW * imgObjList.length;
+			canvasObj.height = maxH;
+
+			for (var i = 0, toX = 0; i < imgObjList.length; i++) {
+				var img = imgObjList[i];
+
+				c.drawImage(img, toX + (maxW - img.width) / 2, (maxH - img.height) / 2);
+
+				toX += maxW;
+			}
+		}
+
+	</script>
+</head>
+<body>
+<canvas id="mycanvas"></canvas>
+</body>
+</html>

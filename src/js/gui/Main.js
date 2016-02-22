@@ -1,9 +1,9 @@
 LInit(1000 / 60, "mygame", 960, 640, main);
 
-var dataList;
-var stageLayer;
-var gameLayer;
-var leapED;
+var dataList = {};
+var stageLayer = null;
+var gameLayer = null;
+var leapED = null;
 
 function main () {
 	LGlobal.stageScale = LStageScaleMode.SHOW_ALL;
@@ -18,6 +18,8 @@ function main () {
 
 function loadResource () {
 	var loadList = [
+		{path : "./lib/lufylegend.LQuadTree-0.1.1.min.js"},
+
 		{path : "./data/aircraft_animation_data.js"},
 		{path : "./data/enemy_data.js"},
 
@@ -37,7 +39,8 @@ function loadResource () {
 		{name : "enemy2", path : "./images/enemy2.png"},
 		{name : "enemy3", path : "./images/enemy3.png"},
 		{name : "bullet1", path : "./images/bullet1.png"},
-		{name : "bullet2", path : "./images/bullet2.png"}
+		{name : "bullet2", path : "./images/bullet2.png"},
+		{name : "explosion", path : "./images/explosion.png"},
 	];
 
 	LLoadManage.load(loadList, null, function (result) {
@@ -66,6 +69,10 @@ function gameInit (result) {
 }
 
 function startGame () {
+	if (gameLayer) {
+		gameLayer.remove();
+	}
+
 	isStartGame = true;
 
 	gameLayer = new GameLayer();
@@ -73,13 +80,15 @@ function startGame () {
 }
 
 function handFound () {
-	alert("hand found");
-	// do sth...
+	if (gameLayer) {
+		gameLayer.isPause = false;
+	}
 }
 
 function handLost () {
-	alert("hand lost");
-	// do sth...
+	if (gameLayer) {
+		gameLayer.isPause = true;
+	}
 }
 
 function handMove (e) {
@@ -89,13 +98,10 @@ function handMove (e) {
 }
 
 function superKill () {
-	console.log("superkill is running");
 	isSuperKill = true;
 }
 
 function playerAttack () {
-	console.log("play is shotting");
-
 	if (gameLayer && gameLayer.player) {
 		gameLayer.player.isShoot = true;
 	}

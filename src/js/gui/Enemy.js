@@ -16,18 +16,16 @@ var Enemy = (function () {
 
 		s.style = style;
 		s.data = enemy_data[name];
-		s.useTween = true;
 		s.findPathIndex = 0;
-		s.step = s.data.step;
 		s.findPathSpeed = s.data.findPathSpeed;
+		s.step = s.data.step;
+		s.hp = s.data.hp;
 		s.sightRange = s.data.sightRange;
 		s.shootRange = s.data.shootRange;
 		s.shootSpeed = s.data.shootSpeed;
 		s.bulletNum = s.data.bulletNum;
 		s.bulletStep = s.data.bulletStep;
-		s.bulletStyle = 2;
-
-		s.addEventListener(LEvent.ENTER_FRAME, s.loop);
+		s.bulletStyle = s.data.bulletStyle;
 	}
 
 	Enemy.prototype.getRandomPosition = function () {
@@ -54,10 +52,12 @@ var Enemy = (function () {
 		s.angle = Math.atan2(bg.h / 2 - s.y, bg.w / 2 - s.x) * 180 / Math.PI;
 	};
 
-	Enemy.prototype.loop = function (e) {
-		var s = e.currentTarget, bg = gameLayer.bg, m = 100;
+	Enemy.prototype.loop = function () {
+		var s = this, bg = gameLayer.bg, m = 100;
 
 		s.callParent("loop", arguments);
+
+		s.isShoot = false;
 
 		if (s.findPathIndex++ < s.findPathSpeed) {
 			return;
@@ -69,6 +69,13 @@ var Enemy = (function () {
 			s.angle += Math.floor(-40 + Math.random() * 80);
 		}
 
+		s.atkAngle = s.angle;
+
+		LTweenLite.to(s, 0.5, {
+			rotate : s.atkAngle,
+			ease : LEasing.Quad.easeOut
+		});
+
 		if (s.x < -m || s.x > bg.w + m || s.y < -m || s.y > bg.h + m) {
 			s.remove();
 		}
@@ -77,16 +84,18 @@ var Enemy = (function () {
 	Enemy.prototype.isFollowPlayer = function (p) {
 		var s = this, p;
 
-		if (gameLayer && gameLayer.player) {
+		if (gameLayer.player) {
 			p = gameLayer.player;
 		} else {
 			return false;
 		}
 
-		var xd = s.x - p.x, yd = s.y - p.y;
+		var xd = p.x - s.x, yd = p.y - s.y, ox = -150 + Math.random() * 300, oy = -150 + Math.random() * 300;
 
 		if ((xd * xd + yd * yd) < s.sightRange * s.sightRange) {
-			s.angle = Math.atan2(p.y - s.y, p.x - s.x) * 180 / Math.PI;
+			s.angle = Math.atan2(yd + oy, xd + ox) * 180 / Math.PI;
+
+			s.isShoot = true;
 
 			return true;
 		} else {
