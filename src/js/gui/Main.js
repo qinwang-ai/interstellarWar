@@ -51,8 +51,9 @@ function gameInit (result) {
 	leapED.addEventListener(LeapEventDispatcher.EVENT_HAND_FOUND, handFound);
 	leapED.addEventListener(LeapEventDispatcher.EVENT_HAND_LOST, handLost);
 	leapED.addEventListener(LeapEventDispatcher.EVENT_HAND_MOVE, handMove);
-	leapED.addEventListener(LeapEventDispatcher.EVENT_GAME_START, gameStart);
+	leapED.addEventListener(LeapEventDispatcher.EVENT_START_GAME, startGame);
 	leapED.addEventListener(LeapEventDispatcher.EVENT_SUPER_KILL, superKill);
+	leapED.addEventListener(LeapEventDispatcher.EVENT_PLAYER_ATTACK, playerAttack);
 
 	stageLayer = new LSprite();
 	addChild(stageLayer);
@@ -70,10 +71,12 @@ function startGame () {
 
 function handFound () {
 	alert("hand found");
+	// do sth...
 }
 
 function handLost () {
 	alert("hand lost");
+	// do sth...
 }
 
 function handMove (e) {
@@ -82,12 +85,19 @@ function handMove (e) {
 	}
 }
 
-function gameStart () {
-	console.log("gameStart");
-	isGameStart = true;
+function startGame () {
+	console.log("startGame");
+	isStartGame = true;
+	// do sth...
 }
 
 function superKill () {
 	console.log("superkill is running");
 	isSuperKill = true;
+}
+
+function playerAttack () {
+	console.log("play is shotting");
+
+	//do sth....
 }

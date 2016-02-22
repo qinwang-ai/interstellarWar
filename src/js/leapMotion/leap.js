@@ -1,5 +1,5 @@
 var cats = {};
-var isGameStart = false;
+var isStartGame = false;
 var isSuperKill = false;
 
 Leap.loop(function(frame) {
@@ -11,7 +11,7 @@ Leap.loop(function(frame) {
 		        switch (gesture.type){
 		          case "circle":
 		              console.log("Circle Gesture");
-					  if(leapED && !isGameStart) leapED.dispatchEvent(LeapEventDispatcher.EVENT_GAME_START);
+					  if(leapED && !isStartGame) leapED.dispatchEvent(LeapEventDispatcher.EVENT_START_GAME);
 		              break;
 		          case "keyTap":
 		              console.log("Key Tap Gesture");
