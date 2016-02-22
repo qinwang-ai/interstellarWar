@@ -5,13 +5,24 @@ var isSuperKill = false;
 Leap.loop(function(frame) {
 	frame.hands.forEach(function(hand, index) {
 		var cat = ( cats[index] || (cats[index] = new Cat()) );
-		cat.setTransform(hand.screenPosition(), hand.roll());
-		if(frame.valid && frame.gestures.length > 0){
+
+		//attack control
+		if(hand.type == "left"){
+			cat.setTransform(hand.screenPosition(), hand.roll(), "attack");
+		}
+
+		//move control
+		if(hand.type == "right") {
+			cat.setTransform(hand.screenPosition(), hand.roll(), "move");
+		}
+
+		//start and attack super kill controll
+		if(hand.type == "right" && frame.valid && frame.gestures.length > 0){
 		    frame.gestures.forEach(function(gesture){
 		        switch (gesture.type){
 		          case "circle":
 		              console.log("Circle Gesture");
-					  if(leapED && !isStartGame) leapED.dispatchEvent(LeapEventDispatcher.EVENT_START_GAME);
+//					  if(leapED && !isStartGame) leapED.dispatchEvent(LeapEventDispatcher.EVENT_START_GAME);
 		              break;
 		          case "keyTap":
 		              console.log("Key Tap Gesture");
@@ -46,19 +57,22 @@ Leap.loop(function(frame) {
 
 var Cat = function() {
 	var cat = this;
-	cat.setTransform = function(position, rotation) {
-
+	cat.setTransform = function(position, rotation, type) {
 		if (leapED) {
 			var degree = rotation * (180/Math.PI);
 			var rate = 1;
-			var eve = new LEvent(LeapEventDispatcher.EVENT_HAND_MOVE);
-			eve.angle = degree;
-		//	ABOUNDAND eve.x = (position[0]/window.screen.width)*LGlobal.width*rate - 600;
-		//	ABOUNDAND eve.y = (position[1]/window.screen.height)*LGlobal.height*rate - 300;
-			leapED.dispatchEvent(eve);
+			if(type == "move"){
+				var eve = new LEvent(LeapEventDispatcher.EVENT_HAND_MOVE);
+				eve.angle = degree;
+				leapED.dispatchEvent(eve);
+			}
+			if(type == "attack"){
+				var eve_attack = new LEvent(LeapEventDispatcher.EVENT_PLAYER_ATTACK);
+				eve_attack.angle = degree;
+				leapED.dispatchEvent(eve_attack);
+			}
 		}
 	};
-
 };
 
 cats[0] = new Cat();
