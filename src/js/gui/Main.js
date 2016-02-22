@@ -102,9 +102,11 @@ function superKill () {
 	isSuperKill = true;
 }
 
-function playerAttack () {
+function playerAttack (e) {
 	if (gameLayer && gameLayer.player) {
 		gameLayer.player.isShoot = true;
+
+		gameLayer.player.atkTowards(e.angle);
 	}
 }
 
