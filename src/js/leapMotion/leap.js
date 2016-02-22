@@ -1,9 +1,31 @@
 var cats = {};
+var isStartGame = false;
+var isSuperKill = false;
 
 Leap.loop(function(frame) {
 	frame.hands.forEach(function(hand, index) {
 		var cat = ( cats[index] || (cats[index] = new Cat()) );
 		cat.setTransform(hand.screenPosition(), hand.roll());
+		if(frame.valid && frame.gestures.length > 0){
+		    frame.gestures.forEach(function(gesture){
+		        switch (gesture.type){
+		          case "circle":
+		              console.log("Circle Gesture");
+					  if(leapED && !isStartGame) leapED.dispatchEvent(LeapEventDispatcher.EVENT_START_GAME);
+		              break;
+		          case "keyTap":
+		              console.log("Key Tap Gesture");
+		              break;
+		          case "screenTap":
+		              console.log("Screen Tap Gesture");
+		              break;
+		          case "swipe":
+		              console.log("Swipe Gesture");
+					  if(leapED && !isSuperKill) leapED.dispatchEvent(LeapEventDispatcher.EVENT_SUPER_KILL);
+		              break;
+		        }
+	    	});
+	  }
 	});
 
 })
@@ -29,7 +51,6 @@ var Cat = function() {
 		if (leapED) {
 			var degree = rotation * (180/Math.PI);
 			var rate = 1;
-			console.log(degree);
 			var eve = new LEvent(LeapEventDispatcher.EVENT_HAND_MOVE);
 			eve.angle = degree;
 		//	ABOUNDAND eve.x = (position[0]/window.screen.width)*LGlobal.width*rate - 600;
