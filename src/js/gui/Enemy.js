@@ -14,17 +14,18 @@ var Enemy = (function () {
 			s.step = 5;
 		}
 
+		s.style = style;
 		s.data = enemy_data[name];
 		s.useTween = true;
 		s.findPathIndex = 0;
-		s.bulletStyle = 2;
 		s.step = s.data.step;
 		s.findPathSpeed = s.data.findPathSpeed;
-		s.bulletNum = s.data.bulletNum;
 		s.sightRange = s.data.sightRange;
 		s.shootRange = s.data.shootRange;
 		s.shootSpeed = s.data.shootSpeed;
+		s.bulletNum = s.data.bulletNum;
 		s.bulletStep = s.data.bulletStep;
+		s.bulletStyle = 2;
 
 		s.addEventListener(LEvent.ENTER_FRAME, s.loop);
 	}
@@ -64,14 +65,32 @@ var Enemy = (function () {
 
 		s.findPathIndex = 0;
 
-		if (Math.random() < 0.5) {
-			s.angle += Math.floor(Math.random() * 40);
-		} else {
-			s.angle -= Math.floor(Math.random() * 40)
+		if (!s.isFollowPlayer(gameLayer.player)) {
+			s.angle += Math.floor(-40 + Math.random() * 80);
 		}
 
 		if (s.x < -m || s.x > bg.w + m || s.y < -m || s.y > bg.h + m) {
 			s.remove();
+		}
+	};
+
+	Enemy.prototype.isFollowPlayer = function (p) {
+		var s = this, p;
+
+		if (gameLayer && gameLayer.player) {
+			p = gameLayer.player;
+		} else {
+			return false;
+		}
+
+		var xd = s.x - p.x, yd = s.y - p.y;
+
+		if ((xd * xd + yd * yd) < s.sightRange * s.sightRange) {
+			s.angle = Math.atan2(p.y - s.y, p.x - s.x) * 180 / Math.PI;
+
+			return true;
+		} else {
+			return false;
 		}
 	};
 

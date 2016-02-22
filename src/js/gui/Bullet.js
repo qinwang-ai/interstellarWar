@@ -1,5 +1,5 @@
 var Bullet = (function () {
-	function Bullet (style, angle, step) {
+	function Bullet (style, angle, step, shootRange) {
 		var  s = this;
 		LExtends(s, LSprite, []);
 
@@ -13,6 +13,9 @@ var Bullet = (function () {
 		s.angle = angle;
 		s.stepX = step * Math.cos(rad);
 		s.stepY = step * Math.sin(rad);
+		s.changeX = 0;
+		s.changeY = 0;
+		s.shootRange = shootRange;
 
 		s.addEventListener(LEvent.ENTER_FRAME, s.loop);
 	}
@@ -24,6 +27,17 @@ var Bullet = (function () {
 		s.y += s.stepY;
 
 		s.rotate = s.angle;
+
+		s.changeX += s.stepX;
+		s.changeY += s.stepY;
+
+		if (s.shootRange) {
+			if (Math.sqrt(s.changeY * s.changeY + s.changeX * s.changeX) > s.shootRange) {
+				s.remove();
+			}
+
+			return;
+		}
 
 		if (s.x < -m || s.x > bg.w + m || s.y < -m || s.y > bg.h + m) {
 			s.remove();

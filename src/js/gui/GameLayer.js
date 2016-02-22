@@ -96,7 +96,17 @@ var GameLayer = (function () {
 
 		// return;
 
-		var enemy = new Enemy(Math.round(1 + Math.random() * 2));
+		var rand = Math.random(), index;
+
+		if (rand < 0.4) {
+			index = 1;
+		} else if (rand < 0.8) {
+			index = 2;
+		} else {
+			index = 3;
+		}
+
+		var enemy = new Enemy(index);
 		s.aircraftLayer.addChild(enemy);
 		enemy.getRandomPosition();
 	};

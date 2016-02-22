@@ -8,11 +8,12 @@ var Aircraft = (function () {
 		s.useTween = false;
 		s.isPlayer = false;
 		s.isShoot = false;
-		s.shootSpeed = null;
 		s.shootIndex = 0;
+		s.shootSpeed = null;
 		s.bulletStyle = null;
-		s.bulletStep = 0;
-		s.bulletNum = 0;
+		s.bulletStep = null;
+		s.bulletNum = null;
+		s.shootRange = null;
 
 		s.animation = new LAnimationTimeline(bmpd, frameList);
 		s.animation.x = -bmpd.width / 2;
@@ -43,7 +44,7 @@ var Aircraft = (function () {
 			});
 		}
 
-		if (s.isShoot && s.shootSpeed != null) {
+		if (s.isShoot && s.shootSpeed && s.bulletNum && s.bulletStep && s.bulletStyle) {
 			if (s.shootIndex++ < s.shootSpeed) {
 				return;
 			}
@@ -54,7 +55,22 @@ var Aircraft = (function () {
 		}
 	};
 
-	Aircraft.prototype.addBullet = function () {};
+	Aircraft.prototype.addBullet = function () {
+		var s = this,
+		bulletNum = s.bulletNum,
+		d = 20,
+		p = d * (bulletNum - 1) / 2,
+		rad = (s.angle / 180) * Math.PI;
+
+		for (var i = 0; i < bulletNum; i++) {
+			var b = new Bullet(s.bulletStyle, s.angle, s.bulletStep, s.shootRange);
+			b.x = s.x + p * Math.sin(rad);
+			b.y = s.y - p * Math.cos(rad);
+			gameLayer.bulletLayer.addChild(b);
+			
+			p -= d;
+		}
+	};
 
 	return Aircraft;
 })();

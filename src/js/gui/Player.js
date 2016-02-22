@@ -5,11 +5,13 @@ var Player = (function () {
 		frameList = aircraft_animation_data["player"];
 		LExtends(s, Aircraft, [bmpd, frameList]);
 
-		s.step = 5;
+		s.step = 7;
 		s.angle = -90;
-		s.isPlayer = true;
+		s.atkAngle = -90;
 		s.isShoot = true;
+		s.isPlayer = true;
 		s.shootSpeed = 10;
+		s.shootRange = 900;
 		s.bulletStyle = 1;
 		s.bulletStep = 15;
 		s.bulletNum = 4;
@@ -38,23 +40,6 @@ var Player = (function () {
 
 		s.callParent("loop", arguments);
 	};
-
-	Player.prototype.addBullet = function () {
-		var s = this,
-		bulletNum = s.bulletNum,
-		d = 20,
-		p = d * (bulletNum - 1) / 2,
-		rad = (s.angle / 180) * Math.PI;
-
-		for (var i = 0; i < bulletNum; i++) {
-			var b = new Bullet(s.bulletStyle, s.angle, s.bulletStep);
-			b.x = s.x + p * Math.sin(rad);
-			b.y = s.y - p * Math.cos(rad);
-			gameLayer.bulletLayer.addChild(b);
-			
-			p -= d;
-		}
-	}
 
 	return Player;
 })();

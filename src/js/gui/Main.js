@@ -66,6 +66,8 @@ function gameInit (result) {
 }
 
 function startGame () {
+	isStartGame = true;
+
 	gameLayer = new GameLayer();
 	stageLayer.addChild(gameLayer);
 }
@@ -94,5 +96,7 @@ function superKill () {
 function playerAttack () {
 	console.log("play is shotting");
 
-	//do sth....
+	if (gameLayer && gameLayer.player) {
+		gameLayer.player.isShoot = true;
+	}
 }

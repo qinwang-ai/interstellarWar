@@ -7,6 +7,11 @@ var SceneThumbnail = (function () {
 		s.h = s.w * (bg.h / bg.w);
 		s.ratio = s.w / bg.w;
 
+		var bg = new LShape();
+		bg.alpha = 0.5;
+		bg.graphics.drawRect(2, "#BBBBBB", [0, 0, s.w, s.h], true, "#EEEEEE");
+		s.addChild(bg);
+
 		s.drawLayer = new LSprite();
 		s.addChild(s.drawLayer);
 
@@ -14,9 +19,6 @@ var SceneThumbnail = (function () {
 		mask.graphics.drawRect(2, "#BBBBBB", [0, 0, s.w, s.h]);
 
 		s.drawLayer.mask = mask;
-
-		s.graphics.drawRect(2, "#BBBBBB", [0, 0, s.w, s.h], true, "#EEEEEE");
-		s.alpha = 0.5;
 	}
 
 	SceneThumbnail.prototype.update = function (d) {
@@ -33,11 +35,11 @@ var SceneThumbnail = (function () {
 				c.beginPath();
 
 				if (o.isPlayer) {
-					c.fillStyle = "green";
+					c.fillStyle = "#87E22E";
 
 					r = 5;
 				} else {
-					c.fillStyle = "red";
+					c.fillStyle = "#F92672";
 				}
 
 				c.arc(o.x * s.ratio, o.y * s.ratio, r, 0, Math.PI * 2);

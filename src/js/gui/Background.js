@@ -7,13 +7,15 @@ var Background = (function () {
 		s.bmpW = s.bmp.getWidth();
 		s.bmpH = s.bmp.getHeight();
 
-		for (var i = 0, xI = 0, yI = 0; i < 9; i++) {
+		var ln = 4;
+
+		for (var i = 0, xI = 0, yI = 0; i < ln * ln; i++) {
 			var b = s.bmp.clone();
 			b.x = xI * s.bmpW;
 			b.y = yI * s.bmpH;
 			s.addChild(b);
 
-			if (++xI >= 3) {
+			if (++xI >= ln) {
 				xI = 0;
 				yI++;
 			}
