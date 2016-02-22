@@ -5,28 +5,31 @@ var GameLayer = (function () {
 
 		player = null;
 
-		s.bg = new Background();
-		s.addChild(s.bg);
+		s.sceneLayer = new LSprite();
+		s.addChild(s.sceneLayer);
 
-		s.x = s.bg 
+		s.overLayer = new LSprite();
+		s.addChild(s.overLayer);
 
+		s.bg = null;
 		s.player = null;
-		s.enemyLayer = null;
+
+		s.enemyList = [];
 
 		s.addEnemySpeed = 45;
 		s.addEnemyIndex = 0;
 
-		s.moveToCenter();
+		s.createBg();
 		s.createPlayer();
-		s.createEnmeyLayer();
+		s.createSceneThumbnail();
 
-		s.addEventListener(LMouseEvent.MOUSE_MOVE, function (e) {
+		s.sceneLayer.addEventListener(LMouseEvent.MOUSE_MOVE, function (e) {
 			var sx = (e.selfX - s.player.x), sy = -(e.selfY - s.player.y);
 
 			s.player.moveTowards(-Math.atan2(sy, sx) * 180 / Math.PI);
 		});
 
-		s.addEventListener(LMouseEvent.MOUSE_DOWN, function (e) {
+		s.sceneLayer.addEventListener(LMouseEvent.MOUSE_DOWN, function (e) {
 			var sx = (e.selfX - s.player.x), sy = -(e.selfY - s.player.y);
 
 			s.player.moveTowards(Math.atan2(sy, sx) * 180 / Math.PI);
@@ -35,11 +38,11 @@ var GameLayer = (function () {
 		s.addEventListener(LEvent.ENTER_FRAME, s.loop);
 	}
 
-	GameLayer.prototype.moveToCenter = function () {
+	GameLayer.prototype.createBg = function () {
 		var s = this;
 
-		s.x -= s.bg.bmpW * 2;
-		s.y -= s.bg.bmpH * 2;
+		s.bg = new Background();
+		s.sceneLayer.addChild(s.bg);
 	};
 
 	GameLayer.prototype.createPlayer = function () {
@@ -48,38 +51,42 @@ var GameLayer = (function () {
 		s.player = new Player();
 		s.player.x = s.bg.w / 2;
 		s.player.y = s.bg.h / 2;
-		s.addChild(s.player);
+		s.sceneLayer.addChild(s.player);
 
 		player = s.player;
 	};
 
-	GameLayer.prototype.createEnmeyLayer = function () {
+	GameLayer.prototype.createSceneThumbnail = function () {
 		var s = this;
-		
-		s.enemyLayer = new LSprite();
-		s.addChild(s.enemyLayer);
+
+		s.sceneThumbnail = new SceneThumbnail(s.bg);
+		s.sceneThumbnail.x = LGlobal.width - s.sceneThumbnail.w - 20;
+		s.sceneThumbnail.y = 20;
+		s.overLayer.addChild(s.sceneThumbnail);
 	};
 
 	GameLayer.prototype.loop = function (e) {
 		var s = e.currentTarget;
 
-		s.x = LGlobal.width / 2 - s.player.x;
-		s.y = LGlobal.height / 2 - s.player.y;
+		s.sceneLayer.x = LGlobal.width / 2 - s.player.x;
+		s.sceneLayer.y = LGlobal.height / 2 - s.player.y;
 
 		var maxX = 0, minX = LGlobal.width - s.bg.w;
 		var maxY = 0, minY = LGlobal.height - s.bg.h;
 
-		if (s.x < minX) {
-			s.x = minX;
-		} else if (s.x > maxX) {
-			s.x = maxX;
+		if (s.sceneLayer.x < minX) {
+			s.sceneLayer.x = minX;
+		} else if (s.sceneLayer.x > maxX) {
+			s.sceneLayer.x = maxX;
 		}
 
-		if (s.y < minY) {
-			s.y = minY;
-		} else if (s.y > maxY) {
-			s.y = maxY;
+		if (s.sceneLayer.y < minY) {
+			s.sceneLayer.y = minY;
+		} else if (s.sceneLayer.y > maxY) {
+			s.sceneLayer.y = maxY;
 		}
+
+		s.sceneThumbnail.update(s.sceneLayer.childList);
 
 		if (s.addEnemyIndex++ < s.addEnemySpeed) {
 			return;
@@ -87,8 +94,12 @@ var GameLayer = (function () {
 
 		s.addEnemyIndex = 0;
 
-		// var enemy = new Enemy(1);
-		// s.enemyLayer.addChild(enemy);
+		var enemy = new Enemy(1);
+		enemy.index = s.enemyList.length;
+		s.sceneLayer.addChild(enemy);
+		enemy.getRandomPosition();
+
+		s.enemyList.push(enemy);
 	};
 
 	return GameLayer;

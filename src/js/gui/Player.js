@@ -5,22 +5,20 @@ var Player = (function () {
 		frameList = aircraft_animation_data["player"];
 		LExtends(s, Aircraft, [bmpd, frameList]);
 
+		s.useTween = false;
 		s.step = 5;
 		s.angle = -90;
+		s.isPlayer = true;
 
 		s.addEventListener(LEvent.ENTER_FRAME, s.loop);
 	}
 
-	Player.prototype.moveTowards = function (a) {
-		this.angle = a;
-	};
-
 	Player.prototype.loop = function (e) {
-		var s = e.currentTarget,
-		leftEdge = s.parent.bg.x + 80,
-		rightEdge = s.parent.bg.x + s.parent.bg.w - 80,
-		topEdge = s.parent.bg.y + 80,
-		bottomEdge = s.parent.bg.y + s.parent.bg.h - 80;
+		var s = e.currentTarget, gameLayer = s.parent.parent;
+		leftEdge = gameLayer.bg.x + 80,
+		rightEdge = gameLayer.bg.x + gameLayer.bg.w - 80,
+		topEdge = gameLayer.bg.y + 80,
+		bottomEdge = gameLayer.bg.y + gameLayer.bg.h - 80;
 
 		if (s.x < leftEdge) {
 			s.x = leftEdge;
@@ -34,12 +32,7 @@ var Player = (function () {
 			s.y = bottomEdge;
 		}
 
-		var rad = s.angle * Math.PI / 180;
-
-		s.x += s.step * Math.cos(rad);
-		s.y += s.step * Math.sin(rad);
-
-		s.rotate = s.angle;
+		s.callParent("loop", arguments);
 	};
 
 	return Player;

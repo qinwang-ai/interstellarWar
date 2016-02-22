@@ -25,6 +25,7 @@ function loadResource () {
 		{path : "./js/gui/Aircraft.js"},
 		{path : "./js/gui/Player.js"},
 		{path : "./js/gui/Enemy.js"},
+		{path : "./js/gui/SceneThumbnail.js"},
 
 		{path : "./js/leapMotion/LeapEventDispatcher.js"},
 
@@ -69,4 +70,7 @@ function handLost () {
 }
 
 function handMove (e) {
+	if (player) {
+		player.moveTowards(e.angle);
+	}
 }
