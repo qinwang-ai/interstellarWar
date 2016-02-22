@@ -72,7 +72,7 @@ var Enemy = (function () {
 		s.atkAngle = s.angle;
 
 		LTweenLite.to(s, 0.5, {
-			rotate : s.atkAngle,
+			rotate : s.angle,
 			ease : LEasing.Quad.easeOut
 		});
 

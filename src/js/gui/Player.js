@@ -40,7 +40,7 @@ var Player = (function () {
 
 		s.callParent("loop", arguments);
 
-		s.rotate = s.atkAngle;
+		s.rotate = s.angle;
 
 		if (gameLayer.quadTree && gameLayer.aircraftLayer) {
 			var cl = gameLayer.quadTree.getDataInRect(new LRectangle(s.x - 150, s.y - 150, s.w + 300, s.h + 300));
