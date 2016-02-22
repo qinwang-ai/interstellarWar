@@ -8,7 +8,7 @@ var Player = (function () {
 		s.step = 7;
 		s.angle = -90;
 		s.atkAngle = s.angle;
-		s.isShoot = true;
+		s.isShoot = false;
 		s.isPlayer = true;
 		s.shootSpeed = 10;
 		s.shootRange = 900;
@@ -89,7 +89,7 @@ var Player = (function () {
 
 		if (gameLayer) {
 			gameLayer.gameOver();
-		} 
+		}
 	};
 
 	Player.prototype.reduceHp = function (v) {

@@ -58,6 +58,7 @@ function gameInit (result) {
 	leapED.addEventListener(LeapEventDispatcher.EVENT_START_GAME, startGame);
 	leapED.addEventListener(LeapEventDispatcher.EVENT_SUPER_KILL, superKill);
 	leapED.addEventListener(LeapEventDispatcher.EVENT_PLAYER_ATTACK, playerAttack);
+	leapED.addEventListener(LeapEventDispatcher.EVENT_PLAYER_DISABLE_ATTACK, playerDisableAttack);
 
 	stageLayer = new LSprite();
 	addChild(stageLayer);
@@ -104,5 +105,11 @@ function superKill () {
 function playerAttack () {
 	if (gameLayer && gameLayer.player) {
 		gameLayer.player.isShoot = true;
+	}
+}
+
+function playerDisableAttack () {
+	if (gameLayer && gameLayer.player) {
+		gameLayer.player.isShoot = false;
 	}
 }

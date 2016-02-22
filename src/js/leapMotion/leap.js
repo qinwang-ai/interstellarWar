@@ -3,6 +3,10 @@ var isStartGame = false;
 var isSuperKill = false;
 
 Leap.loop(function(frame) {
+
+	//clear last attack event
+	if(leapED) leapED.dispatchEvent(LeapEventDispatcher.EVENT_PLAYER_DISABLE_ATTACK);
+
 	frame.hands.forEach(function(hand, index) {
 		var cat = ( cats[index] || (cats[index] = new Cat()) );
 
@@ -68,7 +72,8 @@ var Cat = function() {
 			}
 			if(type == "attack"){
 				var eve_attack = new LEvent(LeapEventDispatcher.EVENT_PLAYER_ATTACK);
-				eve_attack.angle = degree;
+				eve_attack.angle = 0;
+				console.log(degree);
 				leapED.dispatchEvent(eve_attack);
 			}
 		}

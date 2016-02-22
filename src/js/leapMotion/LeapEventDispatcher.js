@@ -10,6 +10,7 @@ var LeapEventDispatcher = (function () {
 	LeapEventDispatcher.EVENT_START_GAME = "startGame";
 	LeapEventDispatcher.EVENT_SUPER_KILL = "superKill";
 	LeapEventDispatcher.EVENT_PLAYER_ATTACK = "playerAttack";
+	LeapEventDispatcher.EVENT_PLAYER_DISABLE_ATTACK = "playerDisableAttack";
 
 	return LeapEventDispatcher;
 })();
