@@ -4,6 +4,14 @@ var Aircraft = (function () {
 		LExtends(s, LSprite, []);
 
 		s.angle = 0;
+		s.step = 0;
+		s.useTween = false;
+		s.isPlayer = false;
+		s.isShoot = false;
+		s.shootSpeed = 10;
+		s.shootIndex = 0;
+		s.bulletStyle = null;
+		s.bulletStep = 0;
 
 		s.animation = new LAnimationTimeline(bmpd, frameList);
 		s.animation.x = -bmpd.width / 2;
@@ -33,7 +41,19 @@ var Aircraft = (function () {
 				ease : LEasing.Strong.easeOut
 			});
 		}
+
+		if (s.isShoot) {
+			if (s.shootIndex++ < s.shootSpeed) {
+				return;
+			}
+
+			s.shootIndex = 0;
+
+			s.addBullet();
+		}
 	};
+
+	Aircraft.prototype.addBullet = function () {};
 
 	return Aircraft;
 })();

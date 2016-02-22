@@ -10,6 +10,11 @@ var SceneThumbnail = (function () {
 		s.drawLayer = new LSprite();
 		s.addChild(s.drawLayer);
 
+		var mask = new LShape();
+		mask.graphics.drawRect(2, "#BBBBBB", [0, 0, s.w, s.h]);
+
+		s.drawLayer.mask = mask;
+
 		s.graphics.drawRect(2, "#BBBBBB", [0, 0, s.w, s.h], true, "#EEEEEE");
 		s.alpha = 0.5;
 	}
@@ -22,7 +27,7 @@ var SceneThumbnail = (function () {
 		s.drawLayer.graphics.add(function () {
 			var c = LGlobal.canvas;
 
-			for (var i = 1, l = d.length; i < l; i++) {
+			for (var i = 0, l = d.length; i < l; i++) {
 				var o = d[i], r = 3;
 
 				c.beginPath();

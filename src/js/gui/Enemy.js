@@ -5,18 +5,18 @@ var Enemy = (function () {
 		frameList = aircraft_animation_data["enemy" + style];
 		LExtends(s, Aircraft, [bmpd, frameList]);
 
-		s.index = null;
 		s.useTween = true;
 		s.step = 3;
-		s.angle = 0;
 		s.findPathSpeed = 20;
 		s.findPathIndex = 0;
+		s.bulletStyle = 2;
+		s.bulletStep = 13;
 
 		s.addEventListener(LEvent.ENTER_FRAME, s.loop);
 	}
 
 	Enemy.prototype.getRandomPosition = function () {
-		var s = this, bg = s.parent.parent.bg, rand = Math.random(), m = 100;
+		var s = this, bg = s.parent.parent.parent.bg, rand = Math.random(), m = 100;
 
 		if (rand < 0.5) {
 			s.x = m + Math.floor(Math.random() * (bg.w - m * 2));
@@ -40,7 +40,7 @@ var Enemy = (function () {
 	};
 
 	Enemy.prototype.loop = function (e) {
-		var s = e.currentTarget, gameLayer = s.parent.parent, bg = gameLayer.bg;
+		var s = e.currentTarget, gameLayer = s.parent.parent.parent, bg = gameLayer.bg, m = 100;
 
 		s.callParent("loop", arguments);
 
@@ -56,12 +56,8 @@ var Enemy = (function () {
 			s.angle -= Math.floor(Math.random() * 40)
 		}
 
-		if (s.x < -100 || s.x > bg.w + 100 || s.y < -100 || s.y > bg.h + 100) {
+		if (s.x < -m || s.x > bg.w + m || s.y < -m || s.y > bg.h + m) {
 			s.remove();
-
-			if (s.index != null) {
-				gameLayer.enemyList.splice(s.index, 1);
-			}
 		}
 	};
 

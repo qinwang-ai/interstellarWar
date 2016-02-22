@@ -25,13 +25,18 @@ function loadResource () {
 		{path : "./js/gui/Aircraft.js"},
 		{path : "./js/gui/Player.js"},
 		{path : "./js/gui/Enemy.js"},
+		{path : "./js/gui/Bullet.js"},
 		{path : "./js/gui/SceneThumbnail.js"},
 
 		{path : "./js/leapMotion/LeapEventDispatcher.js"},
 
 		{name : "bg", path : "./images/bg.png"},
 		{name : "player", path : "./images/player.png"},
-		{name : "enemy1", path : "./images/enemy1.png"}
+		{name : "enemy1", path : "./images/enemy1.png"},
+		{name : "enemy2", path : "./images/enemy2.png"},
+		{name : "enemy3", path : "./images/enemy3.png"},
+		{name : "bullet1", path : "./images/bullet1.png"},
+		{name : "bullet2", path : "./images/bullet2.png"}
 	];
 
 	LLoadManage.load(loadList, null, function (result) {

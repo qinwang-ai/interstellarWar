@@ -13,13 +13,17 @@ var GameLayer = (function () {
 
 		s.bg = null;
 		s.player = null;
-
-		s.enemyList = [];
-
 		s.addEnemySpeed = 45;
 		s.addEnemyIndex = 0;
 
 		s.createBg();
+
+		s.aircraftLayer = new LSprite();
+		s.sceneLayer.addChild(s.aircraftLayer);
+
+		s.bulletLayer = new LSprite();
+		s.sceneLayer.addChild(s.bulletLayer);
+
 		s.createPlayer();
 		s.createSceneThumbnail();
 
@@ -51,7 +55,7 @@ var GameLayer = (function () {
 		s.player = new Player();
 		s.player.x = s.bg.w / 2;
 		s.player.y = s.bg.h / 2;
-		s.sceneLayer.addChild(s.player);
+		s.aircraftLayer.addChild(s.player);
 
 		player = s.player;
 	};
@@ -86,7 +90,7 @@ var GameLayer = (function () {
 			s.sceneLayer.y = maxY;
 		}
 
-		s.sceneThumbnail.update(s.sceneLayer.childList);
+		s.sceneThumbnail.update(s.aircraftLayer.childList);
 
 		if (s.addEnemyIndex++ < s.addEnemySpeed) {
 			return;
@@ -94,12 +98,11 @@ var GameLayer = (function () {
 
 		s.addEnemyIndex = 0;
 
-		var enemy = new Enemy(1);
-		enemy.index = s.enemyList.length;
-		s.sceneLayer.addChild(enemy);
-		enemy.getRandomPosition();
+		// return;
 
-		s.enemyList.push(enemy);
+		var enemy = new Enemy(Math.round(1 + Math.random() * 2));
+		s.aircraftLayer.addChild(enemy);
+		enemy.getRandomPosition();
 	};
 
 	return GameLayer;
