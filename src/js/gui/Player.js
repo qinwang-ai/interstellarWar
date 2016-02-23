@@ -98,7 +98,7 @@ var Player = (function () {
 		var v = s.callParent("reduceHp", arguments);
 
 		if (gameLayer) {
-			gameLayer.hpTxt.text = "Hp: " + s.hp;
+			gameLayer.hpBar.update(s.hp);
 		}
 
 		return v;

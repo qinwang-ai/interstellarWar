@@ -26,6 +26,7 @@ var Enemy = (function () {
 		s.bulletNum = s.data.bulletNum;
 		s.bulletStep = s.data.bulletStep;
 		s.bulletStyle = s.data.bulletStyle;
+		s.value = s.data.value;
 	}
 
 	Enemy.prototype.getRandomPosition = function () {
@@ -101,6 +102,19 @@ var Enemy = (function () {
 		} else {
 			return false;
 		}
+	};
+
+	Enemy.prototype.reduceHp = function (v) {
+		var s = this;
+
+		var v = s.callParent("reduceHp", arguments);
+
+		if (v && gameLayer) {
+			gameLayer.point += s.value;
+			gameLayer.pointTxt.text = gameLayer.point;
+		}
+
+		return v;
 	};
 
 	return Enemy;

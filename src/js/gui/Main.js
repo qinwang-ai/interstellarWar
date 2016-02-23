@@ -29,6 +29,7 @@ function loadResource () {
 		{path : "./js/gui/Player.js"},
 		{path : "./js/gui/Enemy.js"},
 		{path : "./js/gui/Bullet.js"},
+		{path : "./js/gui/HpBar.js"},
 		{path : "./js/gui/SceneThumbnail.js"},
 
 		{path : "./js/leapMotion/LeapEventDispatcher.js"},
@@ -41,6 +42,8 @@ function loadResource () {
 		{name : "bullet1", path : "./images/bullet1.png"},
 		{name : "bullet2", path : "./images/bullet2.png"},
 		{name : "explosion", path : "./images/explosion.png"},
+		{name : "bar", path : "./images/bar.png"},
+		{name : "start_game", path : "./images/start_game.png"}
 	];
 
 	LLoadManage.load(loadList, null, function (result) {
@@ -66,13 +69,34 @@ function gameInit (result) {
 	var fps = new FPS();
 	addChild(fps);
 
-	startGame();
+	addBeginningLayer();
+}
+
+function addBeginningLayer () {
+	var beginningLayer = new LSprite();
+	stageLayer.addChild(beginningLayer);
+
+	var bg = new LBitmap(new LBitmapData(dataList["bg"]));
+	beginningLayer.addChild(bg);
+
+	var hint = new LTextField();
+	hint.text = "Rotate Your Index Finger Counterclockwise to ";
+	hint.textAlign = "center";
+	hint.size = 30;
+	hint.x = LGlobal.width / 2;
+	hint.y = 250;
+	beginningLayer.addChild(hint);
+
+	var startGameBmp = new LBitmap(new LBitmapData(dataList["start_game"]));
+	startGameBmp.x = (LGlobal.width - startGameBmp.getWidth()) / 2;
+	startGameBmp.y = 330;
+	beginningLayer.addChild(startGameBmp);
+
+	leapED.dispatchEvent(LeapEventDispatcher.EVENT_START_GAME);
 }
 
 function startGame () {
-	if (gameLayer) {
-		gameLayer.remove();
-	}
+	stageLayer.removeAllChild();
 
 	isStartGame = true;
 

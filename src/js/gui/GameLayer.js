@@ -12,10 +12,13 @@ var GameLayer = (function () {
 		s.bg = null;
 		s.quadTree = null;
 		s.player = null;
-		s.hpTxt = null;
+		s.hpBar = null;
 		s.addEnemySpeed = 45;
 		s.addEnemyIndex = 0;
 		s.isPause = false;
+		s.pauseLayer = null;
+		s.point = 0;
+		s.pointTxt = null;
 
 		s.createBg();
 		s.createQuadTree();
@@ -26,8 +29,10 @@ var GameLayer = (function () {
 		s.aircraftLayer = new LSprite();
 		s.sceneLayer.addChild(s.aircraftLayer);
 
+		s.createPauseLayer();
 		s.createPlayer();
-		s.createHpTxt();
+		s.createHpBar();
+		s.createPointTxt();
 		s.createSceneThumbnail();
 
 		s.sceneLayer.addEventListener(LMouseEvent.MOUSE_MOVE, function (e) {
@@ -60,15 +65,13 @@ var GameLayer = (function () {
 		s.quadTree.createChildren(3);
 	};
 
-	GameLayer.prototype.createHpTxt = function () {
+	GameLayer.prototype.createHpBar = function () {
 		var s = this;
 
-		s.hpTxt = new LTextField();
-		s.hpTxt.size = 30;
-		s.hpTxt.text = "Hp: " + s.player.hp;
-		s.hpTxt.x = 20;
-		s.hpTxt.y = LGlobal.height - s.hpTxt.getHeight() - 20;
-		s.overLayer.addChild(s.hpTxt);
+		s.hpBar = new HpBar(s.player.hp);
+		s.hpBar.x = 20;
+		s.hpBar.y = 560;
+		s.overLayer.addChild(s.hpBar);
 	};
 
 	GameLayer.prototype.createBg = function () {
@@ -76,6 +79,26 @@ var GameLayer = (function () {
 
 		s.bg = new Background();
 		s.sceneLayer.addChild(s.bg);
+	};
+
+	GameLayer.prototype.createPauseLayer = function () {
+		var s = this;
+
+		s.pauseLayer = new LSprite();
+		s.pauseLayer.visible = false;
+		s.pauseLayer.alpha = 0.6;
+		s.pauseLayer.graphics.drawRect(0, "", [0, 0, LGlobal.width, LGlobal.height]);
+		s.overLayer.addChild(s.pauseLayer);
+
+		var hint = new LTextField();
+		hint.text = "PAUSE";
+		hint.size = 50;
+		hint.color = "white";
+		hint.textAlign = "center";
+		hint.textBaseline = "middle";
+		hint.x = LGlobal.width / 2;
+		hint.y = LGlobal.height / 2;
+		s.pauseLayer.addChild(hint);
 	};
 
 	GameLayer.prototype.createPlayer = function () {
@@ -89,6 +112,18 @@ var GameLayer = (function () {
 		s.quadTree.add(s.player, s.player.x, s.player.y);
 	};
 
+	GameLayer.prototype.createPointTxt = function () {
+		var s = this;
+
+		s.pointTxt = new LTextField();
+		s.pointTxt.size = 40;
+		s.pointTxt.text = s.point;
+		s.pointTxt.textAlign = "center";
+		s.pointTxt.x = LGlobal.width / 2;
+		s.pointTxt.y = 30;
+		s.overLayer.addChild(s.pointTxt);
+	};
+
 	GameLayer.prototype.createSceneThumbnail = function () {
 		var s = this;
 
@@ -100,6 +135,8 @@ var GameLayer = (function () {
 
 	GameLayer.prototype.loop = function (e) {
 		var s = e.currentTarget, i, l;
+
+		s.pauseLayer.visible = s.isPause;
 
 		if (s.isPause) {
 			return;
@@ -169,6 +206,8 @@ var GameLayer = (function () {
 	GameLayer.prototype.gameOver = function () {
 		var s = this;
 
+		isStartGame = false;
+
 		s.player = null;
 
 		var curtain = new LShape();
@@ -179,15 +218,55 @@ var GameLayer = (function () {
 		LTweenLite.to(curtain, 3, {
 			alpha : 0.6,
 			onComplete : function () {
+				var title = new LTextField();
+				title.color = "white";
+				title.text = "Game Over~";
+				title.size = 60;
+				title.textAlign = "center";
+				title.textBaseline = "middle";
+				title.x = LGlobal.width / 2;
+				title.y = 300;
+				title.weight = "bold";
+				title.alpha = 0;
+				s.addChild(title);
+
+				var resultTxt = new LTextField();
+				resultTxt.color = "white";
+				resultTxt.lineColor = "#DDDDDD";
+				resultTxt.lineWidth = 2;
+				resultTxt.stroke = true;
+				resultTxt.text = "Final Point: " + s.point;
+				resultTxt.textAlign = "center";
+				resultTxt.x = LGlobal.width / 2;
+				resultTxt.y = 370;
+				resultTxt.size = 40;
+				resultTxt.alpha = 0;
+				s.addChild(resultTxt);
+
 				var hint = new LTextField();
-				hint.color = "white";
-				hint.text = "Game Over~";
-				hint.size = 50;
+				hint.text = "Rotate Your Index Finger Counterclockwise to Restart";
 				hint.textAlign = "center";
-				hint.textBaseline = "middle";
+				hint.color = "white";
+				hint.size = 30;
 				hint.x = LGlobal.width / 2;
-				hint.y = LGlobal.height / 2;
+				hint.y = 450;
+				hint.alpha = 0;
 				s.addChild(hint);
+
+				LTweenLite.to(title, 1, {
+					alpha : 1,
+					y : title.y - 50
+				});
+
+				LTweenLite.to(resultTxt, 1, {
+					alpha : 1,
+					y : resultTxt.y - 60
+				});
+
+				LTweenLite.to(hint, 1, {
+					alpha : 1,
+					y : hint.y - 70
+				});
 			}
 		});
 	};

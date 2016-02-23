@@ -8,7 +8,8 @@ var enemy_data = {
 		shootSpeed : 10,
 		bulletStep : 10,
 		bulletStyle : 2,
-		hp : 10
+		hp : 10,
+		value : 5
 	},
 
 	enemy2 : {
@@ -20,7 +21,8 @@ var enemy_data = {
 		shootSpeed : 6,
 		bulletStep : 15,
 		bulletStyle : 2,
-		hp : 30
+		hp : 30,
+		value : 20
 	},
 
 	enemy3 : {
@@ -32,6 +34,7 @@ var enemy_data = {
 		shootSpeed : 3,
 		bulletStep : 25,
 		bulletStyle : 2,
-		hp : 100
+		hp : 100,
+		value : 60
 	}
 };

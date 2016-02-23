@@ -3,14 +3,15 @@ var Background = (function () {
 		var  s = this;
 		LExtends(s, LSprite, []);
 
-		s.bmp = new LBitmap(new LBitmapData(dataList["bg"]));
-		s.bmpW = s.bmp.getWidth();
-		s.bmpH = s.bmp.getHeight();
+		var bmp = new LBitmap(new LBitmapData(dataList["bg"]));
+
+		s.bmpW = bmp.getWidth();
+		s.bmpH = bmp.getHeight();
 
 		var ln = 4;
 
 		for (var i = 0, xI = 0, yI = 0; i < ln * ln; i++) {
-			var b = s.bmp.clone();
+			var b = bmp.clone();
 			b.x = xI * s.bmpW;
 			b.y = yI * s.bmpH;
 			s.addChild(b);
