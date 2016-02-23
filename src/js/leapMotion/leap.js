@@ -72,8 +72,7 @@ var Cat = function() {
 			}
 			if(type == "attack"){
 				var eve_attack = new LEvent(LeapEventDispatcher.EVENT_PLAYER_ATTACK);
-				eve_attack.angle = 0;
-				console.log(degree);
+				eve_attack.angle = degree;
 				leapED.dispatchEvent(eve_attack);
 			}
 		}
