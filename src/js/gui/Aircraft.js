@@ -97,8 +97,10 @@ var Aircraft = (function () {
 				var bmpd = new LBitmapData(dataList["explosion"]),
 				frameList = LGlobal.divideCoordinate(468, 125, 1, 4);
 				var explosion = new LAnimationTimeline(bmpd, frameList);
-				explosion.x = s.x - bmpd.width / 2;
-				explosion.y = s.y - bmpd.height / 2;
+				explosion.scaleX = s.w / bmpd.width;
+				explosion.scaleY = s.h / bmpd.height;
+				explosion.x = s.x - s.w / 2;
+				explosion.y = s.y - s.h / 2;
 				explosion.speed = 3;
 				gameLayer.sceneLayer.addChild(explosion);
 

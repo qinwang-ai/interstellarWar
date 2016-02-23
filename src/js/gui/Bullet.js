@@ -47,9 +47,11 @@ var Bullet = (function () {
 			}
 
 			for (var j = 0, m = rml.length; j < m; j++) {
-				rml[j].remove();
+				var item = rml[j];
 
-				gameLayer.quadTree.remove(o);
+				gameLayer.quadTree.remove(item);
+
+				item.remove();
 			}
 		}
 

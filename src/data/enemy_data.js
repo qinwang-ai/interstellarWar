@@ -2,7 +2,7 @@ var enemy_data = {
 	enemy1 : {
 		step : 5,
 		bulletNum : 2,
-		sightRange : 300,
+		sightRange : 600,
 		shootRange : 1000,
 		findPathSpeed : 10,
 		shootSpeed : 10,
@@ -15,7 +15,7 @@ var enemy_data = {
 	enemy2 : {
 		step : 8,
 		bulletNum : 3,
-		sightRange : 400,
+		sightRange : 900,
 		shootRange : 1800,
 		findPathSpeed : 40,
 		shootSpeed : 6,
@@ -28,7 +28,7 @@ var enemy_data = {
 	enemy3 : {
 		step : 5,
 		bulletNum : 5,
-		sightRange : 500,
+		sightRange : 1500,
 		shootRange : 2200,
 		findPathSpeed : 40,
 		shootSpeed : 3,

@@ -8,12 +8,12 @@ var Player = (function () {
 		s.step = 7;
 		s.angle = -90;
 		s.atkAngle = s.angle;
-		s.isShoot = false;
+		s.isShoot = true;
 		s.isPlayer = true;
 		s.shootSpeed = 10;
 		s.shootRange = 900;
 		s.bulletStyle = 1;
-		s.bulletStep = 15;
+		s.bulletStep = 20;
 		s.bulletNum = 4;
 		s.hp = 50;
 		s.isHit = false;
@@ -48,7 +48,7 @@ var Player = (function () {
 
 		s.rotate = s.angle;
 
-		if (gameLayer.quadTree && gameLayer.aircraftLayer) {
+		if (gameLayer.quadTree) {
 			var cl = gameLayer.quadTree.getDataInRect(new LRectangle(s.x - 150, s.y - 150, s.w + 300, s.h + 300));
 			var notHitNum = 0;
 
@@ -81,9 +81,11 @@ var Player = (function () {
 			}
 
 			for (var j = 0, m = rml.length; j < m; j++) {
-				rml[j].remove();
+				var item = rml[j];
+				
+				gameLayer.quadTree.remove(item);
 
-				gameLayer.quadTree.remove(o);
+				item.remove();
 			}
 		}
 	};
@@ -103,12 +105,41 @@ var Player = (function () {
 
 		var v = s.callParent("reduceHp", arguments);
 
-		if (gameLayer) {
+		if (gameLayer && gameLayer.hpBar) {
 			gameLayer.hpBar.update(s.hp);
 		}
 
 		return v;
 	};
+
+	Player.prototype.useBomb = function () {
+		var s = this, rml = new Array();
+
+		if (gameLayer && gameLayer.quadTree) {
+			var cl = gameLayer.quadTree.getDataInRect(new LRectangle(s.x - s.shootRange / 2, s.y - s.shootRange / 2, s.shootRange, s.shootRange));
+			
+			for (var i = 0, l = cl.length; i < l; i++) {
+				var o = cl[i];
+
+				if (o.objectIndex == s.objectIndex) {
+					continue;
+				}
+
+				if (o.reduceHp(o.hp)) {
+					rml.push(o);
+				}
+			}
+
+			for (var j = 0, m = rml.length; j < m; j++) {
+				var item = rml[j];
+				
+				gameLayer.quadTree.remove(item);
+
+				item.remove();
+			}
+		}
+	};
+
 
 	return Player;
 })();

@@ -22,6 +22,7 @@ function loadResource () {
 
 		{path : "./data/aircraft_animation_data.js"},
 		{path : "./data/enemy_data.js"},
+		{path : "./data/skill_data.js"},
 
 		{path : "./js/gui/GameLayer.js"},
 		{path : "./js/gui/Background.js"},
@@ -31,6 +32,7 @@ function loadResource () {
 		{path : "./js/gui/Bullet.js"},
 		{path : "./js/gui/HpBar.js"},
 		{path : "./js/gui/SceneThumbnail.js"},
+		{path : "./js/gui/SkillButton.js"},
 
 		{path : "./js/leapMotion/LeapEventDispatcher.js"},
 
@@ -43,6 +45,8 @@ function loadResource () {
 		{name : "bullet2", path : "./images/bullet2.png"},
 		{name : "explosion", path : "./images/explosion.png"},
 		{name : "bar", path : "./images/bar.png"},
+		{name : "bomb", path : "./images/bomb.png"},
+		{name : "flash", path : "./images/flash.png"},
 		{name : "start_game", path : "./images/start_game.png"}
 	];
 

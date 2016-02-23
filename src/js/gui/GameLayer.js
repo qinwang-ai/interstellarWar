@@ -19,6 +19,7 @@ var GameLayer = (function () {
 		s.pauseLayer = null;
 		s.point = 0;
 		s.pointTxt = null;
+		s.skillList = new Array();
 
 		s.createBg();
 		s.createQuadTree();
@@ -32,6 +33,7 @@ var GameLayer = (function () {
 		s.createPauseLayer();
 		s.createPlayer();
 		s.createHpBar();
+		s.createSkillBtnLayer();
 		s.createPointTxt();
 		s.createSceneThumbnail();
 
@@ -70,7 +72,7 @@ var GameLayer = (function () {
 
 		s.hpBar = new HpBar(s.player.hp);
 		s.hpBar.x = 20;
-		s.hpBar.y = 560;
+		s.hpBar.y = 20;
 		s.overLayer.addChild(s.hpBar);
 	};
 
@@ -110,6 +112,27 @@ var GameLayer = (function () {
 		s.aircraftLayer.addChild(s.player);
 
 		s.quadTree.add(s.player, s.player.x, s.player.y);
+	};
+
+	GameLayer.prototype.createSkillBtnLayer = function () {
+		var s = this, toY = 0;
+
+		var skillBtnLayer = new LSprite();
+		skillBtnLayer.x = 830;
+		skillBtnLayer.y = 300;
+		s.overLayer.addChild(skillBtnLayer);
+
+		for (var k in skill_data) {
+			var d = skill_data[k];
+
+			var skillBtn = new SkillButton(k, d.delay, d.effect);
+			skillBtn.y = toY;
+			skillBtnLayer.addChild(skillBtn);
+
+			s.skillList.push(skillBtn);
+
+			toY += 120;
+		}
 	};
 
 	GameLayer.prototype.createPointTxt = function () {
@@ -218,39 +241,33 @@ var GameLayer = (function () {
 		LTweenLite.to(curtain, 3, {
 			alpha : 0.6,
 			onComplete : function () {
-				var title = new LTextField();
-				title.color = "white";
+				var temp = new LTextField();
+				temp.color = "white";
+				temp.textAlign = "center";
+				temp.x = LGlobal.width / 2;
+				temp.alpha = 0;
+
+				var title = temp.clone();
 				title.text = "Game Over~";
 				title.size = 60;
-				title.textAlign = "center";
 				title.textBaseline = "middle";
-				title.x = LGlobal.width / 2;
 				title.y = 300;
 				title.weight = "bold";
-				title.alpha = 0;
 				s.addChild(title);
 
-				var resultTxt = new LTextField();
-				resultTxt.color = "white";
-				resultTxt.lineColor = "#DDDDDD";
+				var resultTxt = temp.clone();
+				resultTxt.lineColor = "#CCCCCC";
 				resultTxt.lineWidth = 2;
 				resultTxt.stroke = true;
 				resultTxt.text = "Final Point: " + s.point;
-				resultTxt.textAlign = "center";
-				resultTxt.x = LGlobal.width / 2;
 				resultTxt.y = 370;
 				resultTxt.size = 40;
-				resultTxt.alpha = 0;
 				s.addChild(resultTxt);
 
-				var hint = new LTextField();
+				var hint = temp.clone();
 				hint.text = "Rotate Your Index Finger Counterclockwise to Restart";
-				hint.textAlign = "center";
-				hint.color = "white";
 				hint.size = 30;
-				hint.x = LGlobal.width / 2;
 				hint.y = 450;
-				hint.alpha = 0;
 				s.addChild(hint);
 
 				LTweenLite.to(title, 1, {
