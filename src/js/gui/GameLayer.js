@@ -229,6 +229,10 @@ var GameLayer = (function () {
 	GameLayer.prototype.gameOver = function () {
 		var s = this;
 
+		if (!isStartGame) {
+			return;
+		}
+
 		isStartGame = false;
 
 		s.player = null;
@@ -251,23 +255,55 @@ var GameLayer = (function () {
 				title.text = "Game Over~";
 				title.size = 60;
 				title.textBaseline = "middle";
-				title.y = 300;
+				title.y = 270;
 				title.weight = "bold";
 				s.addChild(title);
 
-				var resultTxt = temp.clone();
-				resultTxt.lineColor = "#CCCCCC";
-				resultTxt.lineWidth = 2;
-				resultTxt.stroke = true;
-				resultTxt.text = "Final Point: " + s.point;
-				resultTxt.y = 370;
-				resultTxt.size = 40;
-				s.addChild(resultTxt);
+				var pointTxt = temp.clone();
+				pointTxt.lineColor = "#CCCCCC";
+				pointTxt.lineWidth = 2;
+				pointTxt.stroke = true;
+				pointTxt.text = "Final Point: " + s.point;
+				pointTxt.y = 340;
+				pointTxt.size = 40;
+				s.addChild(pointTxt);
+
+				var rankingTxt = temp.clone();
+				rankingTxt.size = 40;
+				rankingTxt.text = "Getting Ranking...";
+				rankingTxt.y = 410;
+				s.addChild(rankingTxt);
+
+				LAjax.post(
+					"http://yuehaowang.applinzi.com/ranking",
+					{
+						cmd : "set",
+						gameName : "interstellarWar",
+						level : 0,
+						sortMethod : "DESC",
+						username : "id" + Math.floor(Math.random() * 100000) + (new Date()).getTime(),
+						grade : parseInt(s.point)
+					},
+					function (d) {
+						var ranking = GameLayer.getStr(d);
+
+						if (ranking > 10000) {
+							ranking = "> 10000";
+						}
+
+						s.ranking = ranking;
+
+						rankingTxt.text = "Universe Ranking: " + ranking;
+					},
+					function () {
+						rankingTxt.text = "Error! Please check your Network.";
+					}
+				);
 
 				var hint = temp.clone();
 				hint.text = "Rotate Your Index Finger Counterclockwise to Restart";
 				hint.size = 30;
-				hint.y = 450;
+				hint.y = 480;
 				s.addChild(hint);
 
 				LTweenLite.to(title, 1, {
@@ -275,17 +311,30 @@ var GameLayer = (function () {
 					y : title.y - 50
 				});
 
-				LTweenLite.to(resultTxt, 1, {
+				LTweenLite.to(pointTxt, 1, {
 					alpha : 1,
-					y : resultTxt.y - 60
+					y : pointTxt.y - 60
+				});
+
+				LTweenLite.to(rankingTxt, 1, {
+					alpha : 1,
+					y : rankingTxt.y - 70
 				});
 
 				LTweenLite.to(hint, 1, {
 					alpha : 1,
-					y : hint.y - 70
+					y : hint.y - 80
 				});
 			}
 		});
+	};
+
+	GameLayer.getStr = function (data) {
+		var splitList = data.split("<script");
+
+		data = splitList[0];
+
+		return data;
 	};
 
 	return GameLayer;

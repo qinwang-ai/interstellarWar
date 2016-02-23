@@ -2,7 +2,7 @@ var skill_data = {
 	bomb : {
 		delay : 30,
 		effect : function () {
-			if (gameLayer && gameLayer.player && gameLayer.overLayer) {
+			if (gameLayer && gameLayer.overLayer) {
 				var effectLayer = new LShape();
 				effectLayer.graphics.drawRect(0, "", [0, 0, LGlobal.width, LGlobal.height], true, "white");
 				gameLayer.overLayer.addChild(effectLayer);
@@ -22,7 +22,9 @@ var skill_data = {
 					onComplete : function () {
 						effectLayer.remove();
 
-						gameLayer.player.useBomb();
+						if (gameLayer.player) {
+							gameLayer.player.useBomb();
+						}
 					}
 				});
 			}
