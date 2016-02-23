@@ -27,6 +27,10 @@ var Enemy = (function () {
 		s.bulletStep = s.data.bulletStep;
 		s.bulletStyle = s.data.bulletStyle;
 		s.value = s.data.value;
+
+		if (typeof s.data.shapes != UNDEFINED) {
+			s.addShapes(s.data.shapes);
+		}
 	}
 
 	Enemy.prototype.getRandomPosition = function () {

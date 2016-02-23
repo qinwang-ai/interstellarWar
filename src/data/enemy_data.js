@@ -35,6 +35,11 @@ var enemy_data = {
 		bulletStep : 25,
 		bulletStyle : 2,
 		hp : 100,
-		value : 60
+		value : 60,
+		shapes : [
+			[50, 95, 235, 111],
+			[3, 3, 145, 100],
+			[3, 180, 145, 105]
+		]
 	}
 };

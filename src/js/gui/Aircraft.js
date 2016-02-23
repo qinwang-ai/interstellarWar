@@ -26,6 +26,18 @@ var Aircraft = (function () {
 		s.animation.play();
 	}
 
+	Aircraft.prototype.addShapes = function (li) {
+		var s = this, res = new Array();
+
+		for (var i = 0, l = li.length; i < l; i++) {
+			var item = li[i];
+
+			res.push({type : LShape.RECT, arg : item});
+		}
+
+		s.animation.callParent("addShapes", [res]);
+	};
+
 	Aircraft.prototype.moveTowards = function (a) {
 		this.angle = a;
 	};

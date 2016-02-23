@@ -17,6 +17,12 @@ var Player = (function () {
 		s.bulletNum = 4;
 		s.hp = 50;
 		s.isHit = false;
+
+		s.addShapes([
+			[35, 35, 115, 50],
+			[30, 0, 65, 40],
+			[30, 80, 65, 45]
+		]);
 	}
 
 	Player.prototype.loop = function () {

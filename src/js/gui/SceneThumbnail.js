@@ -39,7 +39,15 @@ var SceneThumbnail = (function () {
 
 					r = 5;
 				} else {
-					c.fillStyle = "#F92672";
+					if (o.style == 1) {
+						c.fillStyle = "#FD9720";
+					} else if (o.style == 2) {
+						c.fillStyle = "#54D9EF";
+					}else if (o.style == 3) {
+						c.fillStyle = "#A349A4";
+						
+						r = 4;
+					}
 				}
 
 				c.arc(o.x * s.ratio, o.y * s.ratio, r, 0, Math.PI * 2);

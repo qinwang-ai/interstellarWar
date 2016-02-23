@@ -7,8 +7,9 @@ var HpBar = (function () {
 
 		var hpTxt = new LTextField();
 		hpTxt.size = 40;
+		hpTxt.y = 5;
 		hpTxt.weight = "bold";
-		hpTxt.text = "Hp: ";
+		hpTxt.text = "HP";
 		s.addChild(hpTxt);
 
 		var barLayer = new LSprite();

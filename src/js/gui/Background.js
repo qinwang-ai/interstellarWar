@@ -8,7 +8,7 @@ var Background = (function () {
 		s.bmpW = bmp.getWidth();
 		s.bmpH = bmp.getHeight();
 
-		var ln = 4;
+		var ln = 9;
 
 		for (var i = 0, xI = 0, yI = 0; i < ln * ln; i++) {
 			var b = bmp.clone();
