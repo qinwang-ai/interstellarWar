@@ -12,15 +12,21 @@ var SkillButton = (function () {
 		s.startDelay();
 
 		s.addEventListener(LMouseEvent.MOUSE_UP, function () {
-			if (s.alpha < 1) {
-				return;
-			}
-
-			s.effect();
-
-			s.startDelay();
+			s.startSkill();
 		});
 	}
+
+	SkillButton.prototype.startSkill = function () {
+		var s = this;
+
+		if (s.alpha < 1) {
+			return;
+		}
+
+		s.effect();
+
+		s.startDelay();
+	};
 
 	SkillButton.prototype.startDelay = function () {
 		var s = this;

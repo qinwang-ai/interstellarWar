@@ -1,6 +1,18 @@
 # interstellarWar
 
 
+# 如何使用技能
+
+触发LeapEventDispatcher.EVENT_START_SKILL，需要加入index参数，及：
+```
+var eve = new LEvent(LeapEventDispatcher.EVENT_START_SKILL);
+eve.index = 0;
+leapED.dispatchEvent(eve);
+```
+index = 0代表清屏技能
+index = 1代表加速技能
+
+
 # 如何使用拼图工具
 进入stitching_animation/index.html，更改imgList数组，把动画图片路径按顺序加到这个数组中。打开index.html。得到含有动画的画布，对画布右键：Save image as... 就能保存画布中的图片。
 
