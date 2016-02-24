@@ -5,7 +5,7 @@ var Player = (function () {
 		frameList = aircraft_animation_data["player"];
 		LExtends(s, Aircraft, [bmpd, frameList]);
 
-		s.step = 7;
+		s.step = null;
 		s.angle = -90;
 		s.atkAngle = s.angle;
 		s.isShoot = false;

@@ -140,6 +140,7 @@ function handLost () {
 function handMove (e) {
 	if (gameLayer && gameLayer.player) {
 		gameLayer.player.moveTowards(e.angle);
+		gameLayer.player.moveStep(e.step);
 	}
 }
 

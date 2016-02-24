@@ -46,6 +46,10 @@ var Aircraft = (function () {
 		this.atkAngle = a;
 	};
 
+	Aircraft.prototype.moveStep = function (a) {
+		this.step = a;
+	};
+
 	Aircraft.prototype.loop = function () {
 		var s = this;
 

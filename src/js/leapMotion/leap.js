@@ -12,12 +12,19 @@ Leap.loop(function(frame) {
 
 		//attack control
 		if(hand.type == "left"){
-			cat.setTransform(hand.screenPosition(), hand.roll(), "attack");
+			cat.setTransform(hand.screenPosition(), hand.roll(), "attack", null);
 		}
 
 		//move control
 		if(hand.type == "right") {
-			cat.setTransform(hand.screenPosition(), hand.roll(), "move");
+			var radius;
+			if(hand.sphereRadius >120) {
+				radius = 120;
+			} else {
+				radius = hand.sphereRadius;
+			}
+			step = (120 - radius)/10;
+			cat.setTransform(hand.screenPosition(), hand.roll(), "move" , step);
 		}
 
 		//start and attack super kill controll
@@ -65,13 +72,14 @@ Leap.loop(function(frame) {
 
 var Cat = function() {
 	var cat = this;
-	cat.setTransform = function(position, rotation, type) {
+	cat.setTransform = function(position, rotation, type, step) {
 		if (leapED) {
 			var degree = rotation * (180/Math.PI);
 			var rate = 1;
 			if(type == "move"){
 				var eve = new LEvent(LeapEventDispatcher.EVENT_HAND_MOVE);
 				eve.angle = degree;
+				eve.step = step;
 				leapED.dispatchEvent(eve);
 			}
 			if(type == "attack"){
