@@ -234,6 +234,8 @@ var GameLayer = (function () {
 		}
 
 		isStartGame = false;
+		soundBack.stop();
+		soundPlayerDead.play();
 
 		s.player = null;
 

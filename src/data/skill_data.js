@@ -1,6 +1,6 @@
 var skill_data = {
 	bomb : {
-		delay : 30,
+		delay : 0,
 		effect : function () {
 			if (gameLayer && gameLayer.overLayer) {
 				var effectLayer = new LShape();

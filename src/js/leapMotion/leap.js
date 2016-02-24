@@ -26,7 +26,7 @@ Leap.loop(function(frame) {
 		        switch (gesture.type){
 		          case "circle":
 		              console.log("Circle Gesture");
-//					  if(leapED && !isStartGame) leapED.dispatchEvent(LeapEventDispatcher.EVENT_START_GAME);
+					  if(leapED && !isStartGame) leapED.dispatchEvent(LeapEventDispatcher.EVENT_START_GAME);
 		              break;
 		          case "keyTap":
 		              console.log("Key Tap Gesture");
@@ -36,7 +36,11 @@ Leap.loop(function(frame) {
 		              break;
 		          case "swipe":
 		              console.log("Swipe Gesture");
-					  if(leapED && !isSuperKill) leapED.dispatchEvent(LeapEventDispatcher.EVENT_SUPER_KILL);
+					  if(frame.hands.length == 1 && hand.type == "right" && leapED && !isSuperKill) {
+						  var eve = new LEvent(LeapEventDispatcher.EVENT_START_SKILL);
+						  eve.index = 0;
+						  leapED.dispatchEvent(eve);
+					  }
 		              break;
 		        }
 	    	});
@@ -48,12 +52,12 @@ Leap.loop(function(frame) {
 .use('handEntry')
 .on('handFound', function(hand){
 	if(leapED) {
-//		leapED.dispatchEvent(LeapEventDispatcher.EVENT_HAND_FOUND);
+		leapED.dispatchEvent(LeapEventDispatcher.EVENT_HAND_FOUND);
 	}
 })
 .on('handLost', function(hand){
 	if(leapED) {
-//		leapED.dispatchEvent(LeapEventDispatcher.EVENT_HAND_LOST);
+		leapED.dispatchEvent(LeapEventDispatcher.EVENT_HAND_LOST);
 	}
 });
 

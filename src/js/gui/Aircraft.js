@@ -82,7 +82,7 @@ var Aircraft = (function () {
 			b.x = s.x + p * Math.sin(rad);
 			b.y = s.y - p * Math.cos(rad);
 			gameLayer.bulletLayer.addChild(b);
-			
+
 			p -= d;
 		}
 	};
@@ -105,6 +105,16 @@ var Aircraft = (function () {
 				gameLayer.sceneLayer.addChild(explosion);
 
 				explosion.play();
+
+				if(s.isPlayer) {
+					soundPlayerDead.play();
+				} else {
+					if( s.style == 3){
+						soundBigEnemyDead.play();
+					} else {
+						soundEnemyDead.play();
+					}
+				}
 
 				explosion.addEventListener(LEvent.COMPLETE, function () {
 					explosion.remove();

@@ -8,14 +8,14 @@ var Player = (function () {
 		s.step = 7;
 		s.angle = -90;
 		s.atkAngle = s.angle;
-		s.isShoot = true;
+		s.isShoot = false;
 		s.isPlayer = true;
 		s.shootSpeed = 10;
 		s.shootRange = 900;
 		s.bulletStyle = 1;
 		s.bulletStep = 20;
 		s.bulletNum = 4;
-		s.hp = 50;
+		s.hp = 100;
 		s.isHit = false;
 
 		s.addShapes([
@@ -82,7 +82,7 @@ var Player = (function () {
 
 			for (var j = 0, m = rml.length; j < m; j++) {
 				var item = rml[j];
-				
+
 				gameLayer.quadTree.remove(item);
 
 				item.remove();
@@ -117,7 +117,7 @@ var Player = (function () {
 
 		if (gameLayer && gameLayer.quadTree) {
 			var cl = gameLayer.quadTree.getDataInRect(new LRectangle(s.x - s.shootRange / 2, s.y - s.shootRange / 2, s.shootRange, s.shootRange));
-			
+
 			for (var i = 0, l = cl.length; i < l; i++) {
 				var o = cl[i];
 
@@ -132,7 +132,7 @@ var Player = (function () {
 
 			for (var j = 0, m = rml.length; j < m; j++) {
 				var item = rml[j];
-				
+
 				gameLayer.quadTree.remove(item);
 
 				item.remove();

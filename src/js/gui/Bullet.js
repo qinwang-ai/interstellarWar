@@ -5,13 +5,16 @@ var Bullet = (function () {
 
 		s.belongToPlayer = belongToPlayer || false;
 
+		if(s.belongToPlayer){
+			soundBullet.play();
+		}
 		var bmp = new LBitmap(new LBitmapData(dataList["bullet" + style]));
 		bmp.x = -bmp.getWidth() / 2;
 		bmp.y = -bmp.getHeight() / 2;
 		s.addChild(bmp);
 
 		var rad = angle * Math.PI / 180;
-		
+
 		s.angle = angle;
 		s.stepX = step * Math.cos(rad);
 		s.stepY = step * Math.sin(rad);
@@ -33,7 +36,7 @@ var Bullet = (function () {
 
 		if (gameLayer.quadTree) {
 			var cl = gameLayer.quadTree.getDataInRect(new LRectangle(s.x - 20, s.y - 20, 68, 52));
-			
+
 			for (var i = 0, l = cl.length; i < l; i++) {
 				var o = cl[i];
 

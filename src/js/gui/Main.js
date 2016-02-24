@@ -53,6 +53,22 @@ function loadResource () {
 	LLoadManage.load(loadList, null, function (result) {
 		gameInit(result);
 	});
+
+	soundBack = new LSound();
+    soundBack.load("./images/background.mp3");
+	soundBack.loopLength = 999999999;
+
+	soundBullet = new LSound();
+    soundBullet.load("./images/bullet.mp3");
+
+	soundPlayerDead = new LSound();
+    soundPlayerDead.load("./images/player_dead.wav");
+
+	soundEnemyDead = new LSound();
+    soundEnemyDead.load("./images/plane_bomb.wav");
+
+	soundBigEnemyDead = new LSound();
+    soundBigEnemyDead.load("./images/bigplane_bomb.mp3");
 }
 
 function gameInit (result) {
@@ -96,7 +112,7 @@ function addBeginningLayer () {
 	startGameBmp.y = 330;
 	beginningLayer.addChild(startGameBmp);
 
-	leapED.dispatchEvent(LeapEventDispatcher.EVENT_START_GAME);
+//	leapED.dispatchEvent(LeapEventDispatcher.EVENT_START_GAME);
 }
 
 function startGame () {
@@ -106,6 +122,7 @@ function startGame () {
 
 	gameLayer = new GameLayer();
 	stageLayer.addChild(gameLayer);
+	soundBack.play();
 }
 
 function handFound () {
@@ -135,7 +152,6 @@ function startSkill (e) {
 function playerAttack (e) {
 	if (gameLayer && gameLayer.player) {
 		gameLayer.player.isShoot = true;
-
 		gameLayer.player.atkTowards(e.angle);
 	}
 }
