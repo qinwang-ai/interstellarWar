@@ -1,6 +1,6 @@
 var skill_data = {
 	bomb : {
-		delay : 0,
+		delay : 30,
 		effect : function () {
 			if (gameLayer && gameLayer.overLayer) {
 				var effectLayer = new LShape();
@@ -21,6 +21,7 @@ var skill_data = {
 					alpha : 0.8,
 					onComplete : function () {
 						effectLayer.remove();
+						console.log("effect completed");
 
 						if (gameLayer.player) {
 							gameLayer.player.useBomb();
@@ -31,24 +32,24 @@ var skill_data = {
 		}
 	},
 
-	flash : {
-		delay : 20,
-		effect : function () {
-			if (gameLayer && gameLayer.player) {
-				gameLayer.player.originStep = gameLayer.player.step;
-
-				gameLayer.player.step *= 1.5;
-
-				var timer = new LTimer(10000, 1);
-				timer.addEventListener(LTimerEvent.TIMER_COMPLETE, function () {
-					if (gameLayer.player) {
-						gameLayer.player.step = gameLayer.player.originStep;
-
-						delete gameLayer.player.originStep;
-					}
-				});
-				timer.start();
-			}
-		}
-	}
+	// flash : {
+	// 	delay : 20,
+	// 	effect : function () {
+	// 		if (gameLayer && gameLayer.player) {
+	// 			gameLayer.player.originStep = gameLayer.player.step;
+	//
+	// 			gameLayer.player.step *= 1.5;
+	//
+	// 			var timer = new LTimer(10000, 1);
+	// 			timer.addEventListener(LTimerEvent.TIMER_COMPLETE, function () {
+	// 				if (gameLayer.player) {
+	// 					gameLayer.player.step = gameLayer.player.originStep;
+	//
+	// 					delete gameLayer.player.originStep;
+	// 				}
+	// 			});
+	// 			timer.start();
+	// 		}
+	// 	}
+	// }
 };

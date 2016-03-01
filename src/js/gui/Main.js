@@ -69,6 +69,9 @@ function loadResource () {
 
 	soundBigEnemyDead = new LSound();
     soundBigEnemyDead.load("./images/bigplane_bomb.mp3");
+
+	soundPause = new LSound();
+    soundPause.load("./images/pause.wav");
 }
 
 function gameInit (result) {
@@ -86,25 +89,64 @@ function gameInit (result) {
 	stageLayer = new LSprite();
 	addChild(stageLayer);
 
-	var fps = new FPS();
-	addChild(fps);
+	// var fps = new FPS();
+	// addChild(fps);
 
-	addBeginningLayer();
-}
-
-function addBeginningLayer () {
-	var beginningLayer = new LSprite();
+	beginningLayer = new LSprite();
 	stageLayer.addChild(beginningLayer);
 
 	var bg = new LBitmap(new LBitmapData(dataList["bg"]));
 	beginningLayer.addChild(bg);
 
+	setTimeout("checkLeapState()", 500);
+}
+
+function checkLeapState(){
+	// init CHECK allow web apps
+	if( !Controller.connected()){
+		var hint = new LTextField();
+		hint.text = "Please set the 'Allow Web Apps' to ON in settings then refresh this page";
+		hint.textAlign = "center";
+		hint.size = 20;
+		hint.x = LGlobal.width / 2;
+		hint.y = 300;
+		beginningLayer.addChild(hint);
+	} else {
+		// Leap motion controller not connected    init CHECK
+		if(!Controller.streaming()){
+			if(leapED) {
+				var hint = new LTextField();
+				hint.text = "Please connect Leap Motion Controller";
+				hint.textAlign = "center";
+				hint.size = 20;
+				hint.x = LGlobal.width / 2;
+				hint.y = 300;
+				beginningLayer.addChild(hint);
+			}
+		} else {
+			addBeginningText();
+		}
+	}
+}
+
+function addBeginningText () {
+	beginningLayer.removeAllChild();
+	var bg = new LBitmap(new LBitmapData(dataList["bg"]));
+	beginningLayer.addChild(bg);
 	var hint = new LTextField();
 	hint.text = "Rotate Your Index Finger Counterclockwise to ";
 	hint.textAlign = "center";
 	hint.size = 30;
 	hint.x = LGlobal.width / 2;
 	hint.y = 250;
+	beginningLayer.addChild(hint);
+
+	var hint = new LTextField();
+	hint.text = "Instructions: Rotate right hand: move (fist to speed up);   Rotate left hand: attack;   Swipe gesture: bomb;";
+	hint.textAlign = "center";
+	hint.size = 15;
+	hint.x = LGlobal.width / 2;
+	hint.y = 500;
 	beginningLayer.addChild(hint);
 
 	var startGameBmp = new LBitmap(new LBitmapData(dataList["start_game"]));
@@ -123,17 +165,30 @@ function startGame () {
 	gameLayer = new GameLayer();
 	stageLayer.addChild(gameLayer);
 	soundBack.play();
+
 }
 
+var leapPlugIn = true;
 function handFound () {
-	if (gameLayer) {
+	if (gameLayer && leapPlugIn) {
 		gameLayer.isPause = false;
+		soundBack.play();
 	}
 }
 
+//TODO : bomb timeout stop when pause
+
 function handLost () {
-	if (gameLayer) {
+	if (gameLayer && isStartGame) {
+		if( !Controller.streaming()) {
+			leapPlugIn = false;
+			gameLayer.setHintText( "Please connect Leap Motion Controller");
+		} else {
+			gameLayer.setHintText( "Please put your hands on the Controller");
+		}
 		gameLayer.isPause = true;
+		soundBack.stop();
+		soundPause.play();
 	}
 }
 
@@ -145,7 +200,7 @@ function handMove (e) {
 }
 
 function startSkill (e) {
-	if (gameLayer && gameLayer.skillList) {
+	if (gameLayer && gameLayer.skillList && isStartGame) {
 		gameLayer.skillList[e.index].startSkill();
 	}
 }

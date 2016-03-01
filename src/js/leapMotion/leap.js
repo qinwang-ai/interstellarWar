@@ -2,8 +2,9 @@ var cats = {};
 var isStartGame = false;
 var isSuperKill = false;
 
-Leap.loop(function(frame) {
 
+
+var Controller = Leap.loop(function(frame) {
 	//clear last attack event
 	if(leapED) leapED.dispatchEvent(LeapEventDispatcher.EVENT_PLAYER_DISABLE_ATTACK);
 
@@ -54,6 +55,10 @@ Leap.loop(function(frame) {
 	  }
 	});
 
+	// a little sickness...
+	if(leapED && frame.hands.length === 0 && gameLayer && !gameLayer.isPause) {
+		leapED.dispatchEvent(LeapEventDispatcher.EVENT_HAND_LOST);
+	}
 })
 .use('screenPosition', {scale: 0.25})
 .use('handEntry')
@@ -62,12 +67,25 @@ Leap.loop(function(frame) {
 		leapED.dispatchEvent(LeapEventDispatcher.EVENT_HAND_FOUND);
 	}
 })
-.on('handLost', function(hand){
+.on('streamingStopped', function(){
 	if(leapED) {
 		leapED.dispatchEvent(LeapEventDispatcher.EVENT_HAND_LOST);
 	}
+})
+.on('streamingStarted', function(){
+	// seem fool but usefull.
+	if(leapED) {
+		if( isStartGame) {
+			leapPlugIn = true;
+			leapED.dispatchEvent(LeapEventDispatcher.EVENT_HAND_FOUND);
+		} else {
+			addBeginningText();
+		}
+	}
 });
-
+// .on('focus', function(){
+// 	console.log("focus");
+// });
 
 
 var Cat = function() {

@@ -85,22 +85,27 @@ var GameLayer = (function () {
 
 	GameLayer.prototype.createPauseLayer = function () {
 		var s = this;
-
 		s.pauseLayer = new LSprite();
 		s.pauseLayer.visible = false;
-		s.pauseLayer.alpha = 0.6;
+		s.pauseLayer.alpha = 1;
 		s.pauseLayer.graphics.drawRect(0, "", [0, 0, LGlobal.width, LGlobal.height]);
 		s.overLayer.addChild(s.pauseLayer);
 
 		var hint = new LTextField();
-		hint.text = "PAUSE";
+
+		hint.text = "";
 		hint.size = 50;
-		hint.color = "white";
+		hint.color = "black";
 		hint.textAlign = "center";
 		hint.textBaseline = "middle";
 		hint.x = LGlobal.width / 2;
 		hint.y = LGlobal.height / 2;
 		s.pauseLayer.addChild(hint);
+	};
+
+	// TODO 优化
+	GameLayer.prototype.setHintText = function( pauseHintText){
+		gameLayer.pauseLayer.childList[0].text = pauseHintText;
 	};
 
 	GameLayer.prototype.createPlayer = function () {
@@ -307,7 +312,7 @@ var GameLayer = (function () {
 				hint.size = 30;
 				hint.y = 480;
 				s.addChild(hint);
-
+				
 				LTweenLite.to(title, 1, {
 					alpha : 1,
 					y : title.y - 50
