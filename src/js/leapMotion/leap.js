@@ -1,6 +1,7 @@
 var cats = {};
 var isStartGame = false;
 var isSuperKill = false;
+var superKillTIme = 2000;
 
 
 
@@ -46,6 +47,8 @@ var Controller = Leap.loop(function(frame) {
 		              console.log("Swipe Gesture");
 					  if(frame.hands.length == 1 && hand.type == "right" && leapED && !isSuperKill) {
 						  var eve = new LEvent(LeapEventDispatcher.EVENT_START_SKILL);
+						  isSuperKill = true;
+						  setTimeout("isSuperKill = false", superKillTIme);
 						  eve.index = 0;
 						  leapED.dispatchEvent(eve);
 					  }
@@ -55,8 +58,8 @@ var Controller = Leap.loop(function(frame) {
 	  }
 	});
 
-	// a little sickness...
-	if(leapED && frame.hands.length === 0 && gameLayer && !gameLayer.isPause) {
+	// a little sickness...  Detect if hands.len = 0 then active lost event
+	if(leapED && frame.hands.length === 0 && gameLayer && !gameLayer.isPause && !isSuperKill) {
 		leapED.dispatchEvent(LeapEventDispatcher.EVENT_HAND_LOST);
 	}
 })
