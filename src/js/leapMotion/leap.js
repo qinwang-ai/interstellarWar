@@ -1,11 +1,14 @@
 var cats = {};
 var isStartGame = false;
 var isSuperKill = false;
-var superKillTIme = 2000;
+var superKillTIme = 3000;		// delay superKillTime then set isSuperKill to false;
+var lostNum = 0; // when to active handLost event
+var focusNum = 0;
 
 
 
 var Controller = Leap.loop(function(frame) {
+	focusNum = 0;
 	//clear last attack event
 	if(leapED) leapED.dispatchEvent(LeapEventDispatcher.EVENT_PLAYER_DISABLE_ATTACK);
 
@@ -60,7 +63,10 @@ var Controller = Leap.loop(function(frame) {
 
 	// a little sickness...  Detect if hands.len = 0 then active lost event
 	if(leapED && frame.hands.length === 0 && gameLayer && !gameLayer.isPause && !isSuperKill) {
-		leapED.dispatchEvent(LeapEventDispatcher.EVENT_HAND_LOST);
+		if( lostNum++ == 100) {
+			lostNum = 0;
+			leapED.dispatchEvent(LeapEventDispatcher.EVENT_HAND_LOST);
+		}
 	}
 })
 .use('screenPosition', {scale: 0.25})
@@ -85,10 +91,12 @@ var Controller = Leap.loop(function(frame) {
 			addBeginningText();
 		}
 	}
+})
+.on('focus', function(){
+	if(leapED) {
+		leapED.dispatchEvent(LeapEventDispatcher.EVENT_HAND_FOUND);
+	}
 });
-// .on('focus', function(){
-// 	console.log("focus");
-// });
 
 
 var Cat = function() {
@@ -115,4 +123,4 @@ var Cat = function() {
 cats[0] = new Cat();
 
 // This allows us to move the cat even whilst in an iFrame.
-Leap.loopController.setBackground(true)
+//Leap.loopController.setBackground(true)

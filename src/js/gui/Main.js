@@ -4,6 +4,7 @@ var dataList = {};
 var stageLayer = null;
 var gameLayer = null;
 var leapED = null;
+var leapHit = "Please connect Leap Motion Controller";
 
 function main () {
 	LGlobal.stageScale = LStageScaleMode.SHOW_ALL;
@@ -116,9 +117,9 @@ function checkLeapState(){
 		if(!Controller.streaming()){
 			if(leapED) {
 				var hint = new LTextField();
-				hint.text = "Please connect Leap Motion Controller";
+				hint.text = leapHit;
 				hint.textAlign = "center";
-				hint.size = 20;
+				hint.size = 30;
 				hint.x = LGlobal.width / 2;
 				hint.y = 300;
 				beginningLayer.addChild(hint);
@@ -165,7 +166,16 @@ function startGame () {
 	gameLayer = new GameLayer();
 	stageLayer.addChild(gameLayer);
 	soundBack.play();
-
+	setInterval(function () {
+		if( focusNum ++ == 2){
+			focusNum = 0;
+			if( gameLayer && !gameLayer.isPause) {
+				gameLayer.isPause = true;
+				soundBack.stop();
+				soundPause.play();
+			}
+		}
+	}, 400);
 }
 
 var leapPlugIn = true;
@@ -179,10 +189,22 @@ function handFound () {
 //TODO : bomb timeout stop when pause
 
 function handLost () {
+	if (!isStartGame){
+		beginningLayer.removeAllChild();
+		var bg = new LBitmap(new LBitmapData(dataList["bg"]));
+		beginningLayer.addChild(bg);
+		var hint = new LTextField();
+		hint.text = leapHit;
+		hint.textAlign = "center";
+		hint.size = 30;
+		hint.x = LGlobal.width / 2;
+		hint.y = 300;
+		beginningLayer.addChild(hint);
+	}
 	if (gameLayer && isStartGame) {
 		if( !Controller.streaming()) {
 			leapPlugIn = false;
-			gameLayer.setHintText( "Please connect Leap Motion Controller");
+			gameLayer.setHintText( leapHit);
 		} else {
 			gameLayer.setHintText( "Please put your hands on the Controller");
 		}
