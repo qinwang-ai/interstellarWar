@@ -4,6 +4,7 @@ var dataList = {};
 var stageLayer = null;
 var gameLayer = null;
 var leapED = null;
+var timer = null;
 var leapHint = "Please connect Leap Motion Controller";
 
 var soundBack, soundBullet, soundPlayerDead, soundEnemyDead, soundBigEnemyDead, soundPause;
@@ -101,8 +102,8 @@ function gameInit (result) {
 }
 
 function checkLeapState(){
-	// leapED.dispatchEvent(LeapEventDispatcher.EVENT_START_GAME);
-	// return;
+	leapED.dispatchEvent(LeapEventDispatcher.EVENT_START_GAME);
+	return;
 	// init CHECK allow web apps
 	if( !Controller.connected()){
 		var hint = new LTextField();
@@ -132,8 +133,10 @@ function checkLeapState(){
 
 function addBeginningText () {
 	beginningLayer.removeAllChild();
+
 	var bg = new LBitmap(new LBitmapData(dataList["bg"]));
 	beginningLayer.addChild(bg);
+
 	var hint = new LTextField();
 	hint.text = "Rotate Your Index Finger Counterclockwise to ";
 	hint.textAlign = "center";
@@ -163,8 +166,15 @@ function startGame () {
 
 	gameLayer = new GameLayer();
 	stageLayer.addChild(gameLayer);
+	
 	soundBack.play();
-	setInterval(function () {
+
+	if (timer) {
+		timer.destroy();
+	}
+
+	timer = new LTimer(400, 0);
+	timer.addEventListener(LTimerEvent.TIMER, function () {
 		if( focusNum ++ == 2){
 			focusNum = 0;
 			if( gameLayer && !gameLayer.isPause) {
@@ -173,7 +183,8 @@ function startGame () {
 				soundPause.play();
 			}
 		}
-	}, 400);
+	});
+	timer.start();
 }
 
 var leapPlugIn = true;
