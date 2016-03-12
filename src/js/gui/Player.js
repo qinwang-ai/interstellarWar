@@ -140,6 +140,5 @@ var Player = (function () {
 		}
 	};
 
-
 	return Player;
 })();

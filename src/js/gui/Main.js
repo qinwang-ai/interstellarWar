@@ -4,7 +4,9 @@ var dataList = {};
 var stageLayer = null;
 var gameLayer = null;
 var leapED = null;
-var leapHit = "Please connect Leap Motion Controller";
+var leapHint = "Please connect Leap Motion Controller";
+
+var soundBack, soundBullet, soundPlayerDead, soundEnemyDead, soundBigEnemyDead, soundPause;
 
 function main () {
 	LGlobal.stageScale = LStageScaleMode.SHOW_ALL;
@@ -48,35 +50,31 @@ function loadResource () {
 		{name : "bar", path : "./images/bar.png"},
 		{name : "bomb", path : "./images/bomb.png"},
 		{name : "flash", path : "./images/flash.png"},
-		{name : "start_game", path : "./images/start_game.png"}
+		{name : "start_game", path : "./images/start_game.png"},
+
+		{name : "sound_bgm", path : "./sound/background.mp3"},
+		{name : "sound_bullet", path : "./sound/bullet.mp3"},
+		{name : "sound_player_dead", path : "./sound/player_dead.wav"},
+		{name : "sound_plane_bomb", path : "./sound/plane_bomb.wav"},
+		{name : "sound_bigplane_bomb", path : "./sound/bigplane_bomb.mp3"},
+		{name : "sound_pause", path : "./sound/pause.wav"}
 	];
 
 	LLoadManage.load(loadList, null, function (result) {
 		gameInit(result);
 	});
-
-	soundBack = new LSound();
-    soundBack.load("./images/background.mp3");
-	soundBack.loopLength = 999999999;
-
-	soundBullet = new LSound();
-    soundBullet.load("./images/bullet.mp3");
-
-	soundPlayerDead = new LSound();
-    soundPlayerDead.load("./images/player_dead.wav");
-
-	soundEnemyDead = new LSound();
-    soundEnemyDead.load("./images/plane_bomb.wav");
-
-	soundBigEnemyDead = new LSound();
-    soundBigEnemyDead.load("./images/bigplane_bomb.mp3");
-
-	soundPause = new LSound();
-    soundPause.load("./images/pause.wav");
 }
 
 function gameInit (result) {
 	dataList = result;
+
+	soundBack = new LSound(dataList["sound_bgm"]);
+	soundBack.loopLength = 999999999;
+	soundBullet = new LSound(dataList["sound_bullet"]);
+	soundPlayerDead = new LSound(dataList["sound_player_dead"]);
+	soundEnemyDead = new LSound(dataList["sound_plane_bomb"]);
+	soundBigEnemyDead = new LSound(dataList["sound_bigplane_bomb"]);
+	soundPause = new LSound(dataList["sound_pause"]);
 
 	leapED = new LeapEventDispatcher();
 	leapED.addEventListener(LeapEventDispatcher.EVENT_HAND_FOUND, handFound);
@@ -103,6 +101,8 @@ function gameInit (result) {
 }
 
 function checkLeapState(){
+	// leapED.dispatchEvent(LeapEventDispatcher.EVENT_START_GAME);
+	// return;
 	// init CHECK allow web apps
 	if( !Controller.connected()){
 		var hint = new LTextField();
@@ -117,7 +117,7 @@ function checkLeapState(){
 		if(!Controller.streaming()){
 			if(leapED) {
 				var hint = new LTextField();
-				hint.text = leapHit;
+				hint.text = leapHint;
 				hint.textAlign = "center";
 				hint.size = 30;
 				hint.x = LGlobal.width / 2;
@@ -142,6 +142,11 @@ function addBeginningText () {
 	hint.y = 250;
 	beginningLayer.addChild(hint);
 
+	var startGameBmp = new LBitmap(new LBitmapData(dataList["start_game"]));
+	startGameBmp.x = (LGlobal.width - startGameBmp.getWidth()) / 2;
+	startGameBmp.y = 330;
+	beginningLayer.addChild(startGameBmp);
+
 	var hint = new LTextField();
 	hint.text = "Instructions: Rotate right hand: move (fist to speed up);   Rotate left hand: attack;   Swipe gesture: bomb;";
 	hint.textAlign = "center";
@@ -149,13 +154,6 @@ function addBeginningText () {
 	hint.x = LGlobal.width / 2;
 	hint.y = 500;
 	beginningLayer.addChild(hint);
-
-	var startGameBmp = new LBitmap(new LBitmapData(dataList["start_game"]));
-	startGameBmp.x = (LGlobal.width - startGameBmp.getWidth()) / 2;
-	startGameBmp.y = 330;
-	beginningLayer.addChild(startGameBmp);
-
-//	leapED.dispatchEvent(LeapEventDispatcher.EVENT_START_GAME);
 }
 
 function startGame () {
@@ -194,7 +192,7 @@ function handLost () {
 		var bg = new LBitmap(new LBitmapData(dataList["bg"]));
 		beginningLayer.addChild(bg);
 		var hint = new LTextField();
-		hint.text = leapHit;
+		hint.text = leapHint;
 		hint.textAlign = "center";
 		hint.size = 30;
 		hint.x = LGlobal.width / 2;
@@ -204,13 +202,14 @@ function handLost () {
 	if (gameLayer && isStartGame) {
 		if( !Controller.streaming()) {
 			leapPlugIn = false;
-			gameLayer.setHintText( leapHit);
+			gameLayer.setHintText( leapHint);
 		} else {
 			gameLayer.setHintText( "Please put your hands on the Controller");
 		}
 		gameLayer.isPause = true;
 		soundBack.stop();
 		soundPause.play();
+		LTweenLite.pauseAll();
 	}
 }
 

@@ -92,7 +92,6 @@ var GameLayer = (function () {
 		s.overLayer.addChild(s.pauseLayer);
 
 		var hint = new LTextField();
-
 		hint.text = "";
 		hint.size = 50;
 		hint.color = "black";
@@ -101,11 +100,17 @@ var GameLayer = (function () {
 		hint.x = LGlobal.width / 2;
 		hint.y = LGlobal.height / 2;
 		s.pauseLayer.addChild(hint);
+
+		s.pauseLayer.hintTxt = hint;
 	};
 
 	// TODO 优化
-	GameLayer.prototype.setHintText = function( pauseHintText){
-		gameLayer.pauseLayer.childList[0].text = pauseHintText;
+	GameLayer.prototype.setHintText = function (pauseHintText){
+		var s = this;
+		
+		if (s.pauseLayer) {
+			s.pauseLayer.hintTxt.text = pauseHintText;
+		}
 	};
 
 	GameLayer.prototype.createPlayer = function () {

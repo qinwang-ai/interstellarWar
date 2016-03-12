@@ -21,7 +21,6 @@ var skill_data = {
 					alpha : 0.8,
 					onComplete : function () {
 						effectLayer.remove();
-						console.log("effect completed");
 
 						if (gameLayer.player) {
 							gameLayer.player.useBomb();
@@ -30,7 +29,7 @@ var skill_data = {
 				});
 			}
 		}
-	},
+	}
 
 	// flash : {
 	// 	delay : 20,
